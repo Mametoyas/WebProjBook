@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Management</title>
+    <link href="https://fonts.googleapis.com/css?family=Itim&display=swap" rel="stylesheet" />
+    <link href="./CustomerDetails.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <div class="logo-box"></div>
+        <div class="nav-box nav-item" onclick="selectNav(this); showBreadcrumb(); selectHome()">หน้าแรก</div>
+        <div class="nav-box nav-item selected" onclick="selectNav(this), selectCus()">ลูกค้า</div>
+        <!-- <div class="nav-box nav-item selected" onclick="selectNav(this); selectHome()">ลูกค้า</div> -->
+
+        <div class="nav-box nav-item" onclick="selectNav(this)">ข้อมูลหนังสือ</div>
+        <div class="nav-box nav-item" onclick="selectNav(this)">การชำระเงิน</div>
+
+        <!-- <div class="search-container">
+            <input type="text" class="search-textbox" placeholder="ค้นหาหนังสือ...">
+            <button class="search-box">ค้นหา</button>
+        </div> -->
+        
+        <div class="login-box">
+            <div class="admin-box nav-item" onclick="selectNav(this)">Admin</div>
+            <!-- <div class="nav-item" onclick="selectNav(this)">Admin</div> -->
+        </div>
+    </header>
+
+    <div class="page-title-box">ข้อมูลลูกค้า</div>
+
+    <div class="table-container">
+        <table class="customer-table">
+            <thead>
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>ชื่อ</th>
+                    <th>Email</th>
+                    <th>Token Count</th>
+                    <th>Status</th>
+                    <th>การจัดการ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>ลูกค้า 1</td>
+                    <td>customer1@email.com</td>
+                    <td>150</td>
+                    <td>Active</td>
+                    <td>
+                        <button class="edit-btn">แก้ไข</button>
+                        <button class="delete-btn">ลบ</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>ลูกค้า 2</td>
+                    <td>customer2@email.com</td>
+                    <td>200</td>
+                    <td>Active</td>
+                    <td>
+                        <button class="edit-btn">แก้ไข</button>
+                        <button class="delete-btn">ลบ</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>ลูกค้า 3</td>
+                    <td>customer3@email.com</td>
+                    <td>75</td>
+                    <td>Inactive</td>
+                    <td>
+                        <button class="edit-btn">แก้ไข</button>
+                        <button class="delete-btn">ลบ</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>ลูกค้า 4</td>
+                    <td>customer4@email.com</td>
+                    <td>300</td>
+                    <td>Active</td>
+                    <td>
+                        <button class="edit-btn">แก้ไข</button>
+                        <button class="delete-btn">ลบ</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="action-buttons">
+        <button class="confirm-btn">ยืนยันการชำระเงิน</button>
+    </div>
+
+    <script>
+        function showBreadcrumb() {
+            // Function for breadcrumb display
+        }
+        
+        function selectNav(element) {
+            var navItems = document.getElementsByClassName("nav-item");
+            for (var i = 0; i < navItems.length; i++) {
+                navItems[i].classList.remove("selected");
+            }
+            element.classList.add("selected");
+        }
+
+        function selectHome() {
+            window.location.href = "./HomeAdmin.html";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./HomeUser.css" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- <?php 
+    isset(){
+
+    }
+    ?> -->
+    <header>
+        <div class="logo-box"></div>
+        <div class="nav-box nav-item selected" onclick="selectNav(this); showBreadcrumb()">หน้าแรก</div>
+        <div class="dropdown-box nav-item" onclick="selectNav(this)">
+            <span id="categoryLabel" onclick="toggleDropdown(); event.stopPropagation();">หมวดหมู่ ▼</span>
+            <div class="dropdown-content" id="categoryDropdown">
+                <a class='Category' href="#" onclick="selectCategory('ตลก')">ตลก</a>
+                <a class='Category' href="#" onclick="selectCategory('วิทยาศาสตร์')">วิทยาศาสตร์</a>
+                <a class='Category' href="#" onclick="selectCategory('ดราม่า')">ดราม่า</a>
+                <a class='Category' href="#" onclick="selectCategory('โรแมนติก')">โรแมนติก</a>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-textbox" placeholder="ค้นหาหนังสือ...">
+            <button class="search-box">ค้นหา</button>
+        </div>
+        
+        <div class="login-box nav-item" onclick="selectNav(this)">เข้าสู่ระบบ</div>
+        <div class="register-box nav-item" onclick="selectNav(this)">สมัครสมาชิก</div>
+    </header>
+    
+    <div class="breadcrumb-box" id="breadcrumbBox">
+        <span class="breadcrumb-item selected" onclick="selectBreadcrumb(this)">หนังสือแนะนำ</span> | 
+        <span class="breadcrumb-item" onclick="selectBreadcrumb(this)">ยอดนิยม</span> | 
+        <span class="breadcrumb-item" onclick="selectBreadcrumb(this)">แนะนำหนังสือมาใหม่</span>
+    </div>
+    
+    <div class="books-container">
+        <div class="book-box" onclick="showBookDetail('Sakamoto desu ga?', 'นาโนะ ยูกิ', 'สำนักพิมพ์ ABC', '2020', 'เรื่องราวของนักเรียนมัธยมที่เก่งที่สุดในโลก', 'sakamoto.png')">
+            <div class="book-image" style="background-image: url('./images/sakamoto.png')"></div>
+            <div class="book-title">Sakamoto desu ga?</div>
+        </div>
+        <div class="book-box" onclick="showBookDetail('แมวเป้า', 'ผู้แต่ง B', 'สำนักพิมพ์ XYZ', '2019', 'เรื่องของแมวตัวน้อยที่มีเรื่องน่ารัก', 'cat.png')">
+            <div class="book-image" style="background-image: url('./images/cat.png')"></div>
+            <div class="book-title">แมวเป้า</div>
+        </div>
+        <div class="book-box" onclick="showBookDetail('มนต์รักฉบับนักสืบ', 'ผู้แต่ง D', 'สำนักพิมพ์ GHI', '2022', 'เรื่องราวโรแมนติกของนักสืบที่ต้องคลี่คลายคดี', 'detective.png')">
+            <div class="book-image" style="background-image: url('./images/detective.png')"></div>
+            <div class="book-title">มนต์รักฉบับนักสืบ</div>
+        </div>        <div class="book-box" onclick="showBookDetail('Sakamoto desu ga?', 'นาโนะ ยูกิ', 'สำนักพิมพ์ ABC', '2020', 'เรื่องราวของนักเรียนมัธยมที่เก่งที่สุดในโลก', 'sakamoto.png')">
+            <div class="book-image" style="background-image: url('./images/sakamoto.png')"></div>
+            <div class="book-title">Sakamoto desu ga?</div>
+        </div>
+        <div class="book-box" onclick="showBookDetail('แมวเป้า', 'ผู้แต่ง B', 'สำนักพิมพ์ XYZ', '2019', 'เรื่องของแมวตัวน้อยที่มีเรื่องน่ารัก', 'cat.png')">
+            <div class="book-image" style="background-image: url('./images/cat.png')"></div>
+            <div class="book-title">แมวเป้า</div>
+        </div>
+        <div class="book-box" onclick="showBookDetail('พี่กรรมกรก่อสร้าง', 'ผู้แต่ง C', 'สำนักพิมพ์ DEF', '2021', 'เรื่องของคนงานก่อสร้างที่มีความสามารถพิเศษ', 'construction.png')">
+            <div class="book-image" style="background-image: url('./images/construction.png')"></div>
+            <div class="book-title">พี่กรรมกรก่อสร้าง</div>
+        </div>
+        <div class="book-box" onclick="showBookDetail('มนต์รักฉบับนักสืบ', 'ผู้แต่ง D', 'สำนักพิมพ์ GHI', '2022', 'เรื่องราวโรแมนติกของนักสืบที่ต้องคลี่คลายคดี', 'detective.png')">
+            <div class="book-image" style="background-image: url('./images/detective.png')"></div>
+            <div class="book-title">มนต์รักฉบับนักสืบ</div>
+        </div>        <div class="book-box" onclick="showBookDetail('Sakamoto desu ga?', 'นาโนะ ยูกิ', 'สำนักพิมพ์ ABC', '2020', 'เรื่องราวของนักเรียนมัธยมที่เก่งที่สุดในโลก', 'sakamoto.png')">
+            <div class="book-image" style="background-image: url('./images/sakamoto.png')"></div>
+            <div class="book-title">Sakamoto desu ga?</div>
+        </div>
+        <div class="book-box" onclick="showBookDetail('แมวเป้า', 'ผู้แต่ง B', 'สำนักพิมพ์ XYZ', '2019', 'เรื่องของแมวตัวน้อยที่มีเรื่องน่ารัก', 'cat.png')">
+            <div class="book-image" style="background-image: url('./images/cat.png')"></div>
+            <div class="book-title">แมวเป้า</div>
+        </div>
+        <div class="book-box" onclick="showBookDetail('พี่กรรมกรก่อสร้าง', 'ผู้แต่ง C', 'สำนักพิมพ์ DEF', '2021', 'เรื่องของคนงานก่อสร้างที่มีความสามารถพิเศษ', 'construction.png')">
+            <div class="book-image" style="background-image: url('./images/construction.png')"></div>
+            <div class="book-title">พี่กรรมกรก่อสร้าง</div>
+        </div>
+        <div class="book-box" onclick="showBookDetail('มนต์รักฉบับนักสืบ', 'ผู้แต่ง D', 'สำนักพิมพ์ GHI', '2022', 'เรื่องราวโรแมนติกของนักสืบที่ต้องคลี่คลายคดี', 'detective.png')">
+            <div class="book-image" style="background-image: url('./images/detective.png')"></div>
+            <div class="book-title">มนต์รักฉบับนักสืบ</div>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div id="bookModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <div class="modal-left">
+                    <div class="modal-image"></div>
+                    <h3 id="modalTitle"></h3>
+                </div>
+                <div class="modal-right">
+                    <p><strong>ผู้แต่ง:</strong> <span id="modalAuthor"></span></p>
+                    <p><strong>สำนักพิมพ์:</strong> <span id="modalPublisher"></span></p>
+                    <p><strong>ปีที่พิมพ์:</strong> <span id="modalYear"></span></p>
+                    <p><strong>เนื้อเรื่องย่อ:</strong></p>
+                    <p id="modalSummary"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleDropdown() {
+            document.getElementById("categoryDropdown").classList.toggle("show");
+        }
+        
+        function showBreadcrumb() {
+            document.getElementById("breadcrumbBox").style.display = "block";
+        }
+        
+        function selectCategory(category) {
+            document.getElementById("categoryLabel").textContent = category + " ▼";
+            document.getElementById("categoryDropdown").classList.remove("show");
+        }
+        
+        function selectBreadcrumb(element) {
+            var breadcrumbs = document.getElementsByClassName("breadcrumb-item");
+            for (var i = 0; i < breadcrumbs.length; i++) {
+                breadcrumbs[i].classList.remove("selected");
+            }
+            element.classList.add("selected");
+        }
+        
+        function selectNav(element) {
+            var navItems = document.getElementsByClassName("nav-item");
+            for (var i = 0; i < navItems.length; i++) {
+                navItems[i].classList.remove("selected");
+            }
+            element.classList.add("selected");
+        }
+        
+        function showBookDetail(title, author, publisher, year, summary, image) {
+            document.getElementById("modalTitle").textContent = title;
+            document.getElementById("modalAuthor").textContent = author;
+            document.getElementById("modalPublisher").textContent = publisher;
+            document.getElementById("modalYear").textContent = year;
+            document.getElementById("modalSummary").textContent = summary;
+            document.querySelector(".modal-image").style.backgroundImage = "url('./images/"+image;
+            document.getElementById("bookModal").style.display = "block";
+        }
+        
+        function closeModal() {
+            document.getElementById("bookModal").style.display = "none";
+        }
+        
+        window.onclick = function(event) {
+            if (!event.target.matches('span')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    dropdowns[i].classList.remove('show');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
