@@ -44,7 +44,7 @@ header {
 .dropdown-box {
   position: relative;
   margin-right: 38px;
-  width: 120px;
+  width: 160px;
 }
 
 .dropdown-box span {
@@ -186,6 +186,21 @@ header {
   color: #c71720 !important;
 }
 
+.rental-dates {
+  margin: 0 20px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  min-width: 150px;
+}
+
+.rental-dates p {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
 .item-controls {
   display: flex;
   flex-direction: column;
@@ -208,50 +223,6 @@ header {
 
 .edit-btn:hover {
   background: rgba(254,188,47,0.8);
-}
-
-.quantity-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.qty-btn {
-  background: rgba(0,91,182,1);
-  color: white;
-  border: none;
-  width: 30px;
-  height: 30px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 18px;
-  font-family: 'Itim', sans-serif;
-}
-
-.qty-btn:hover {
-  background: rgba(0,91,182,0.8);
-}
-
-.quantity {
-  font-size: 18px;
-  font-weight: bold;
-  min-width: 30px;
-  text-align: center;
-}
-
-.remove-btn {
-  background: rgba(255,95,87,1);
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: 'Itim', sans-serif;
-  font-size: 14px;
-}
-
-.remove-btn:hover {
-  background: rgba(255,95,87,0.8);
 }
 
 .cart-summary {
@@ -314,6 +285,7 @@ header {
   background: #a01419;
 }
 
+/* Modal styles */
 .modal {
   display: none;
   position: fixed;

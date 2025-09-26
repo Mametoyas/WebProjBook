@@ -60,6 +60,69 @@ header {
   font-weight: bold;
 }
 
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Itim', sans-serif;
+}
+
+.left-group {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.right-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.books-all {
+  color: rgba(0,91,182,1);
+  font-size: 18px;
+}
+
+.category {
+  color: rgba(0,0,0,1);
+  font-size: 18px;
+}
+
+.search-input {
+  padding: 8px 12px;
+  border: 1px solid rgba(127,125,125,0.6);
+  border-radius: 3px;
+  font-family: 'Itim', sans-serif;
+  font-size: 16px;
+  width: 250px;
+}
+
+.search-btn {
+  background: rgba(199,23,32,0.89);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: 'Itim', sans-serif;
+  font-size: 16px;
+}
+
+.add-book-btn {
+  background: rgba(39,200,64,1);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Itim', sans-serif;
+  font-size: 16px;
+}
+
 .table-container {
   max-width: 1400px;
   margin: 0 auto;
@@ -183,6 +246,14 @@ header {
   position: relative;
 }
 
+.modal-title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-family: 'Itim', sans-serif;
+  color: #333;
+}
+
 .close {
   position: absolute;
   right: 15px;
@@ -208,6 +279,55 @@ header {
   border-radius: 5px;
   font-family: 'Itim', sans-serif;
   font-size: 16px;
+}
+
+.category-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.category-container select {
+  flex: 1;
+}
+
+.add-category-btn {
+  background: #27C840;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Itim', sans-serif;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.selected-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 10px;
+  min-height: 30px;
+  border: 1px solid #ddd;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.category-tag {
+  background: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.category-tag .remove {
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .edit-buttons {

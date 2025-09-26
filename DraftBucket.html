@@ -10,9 +10,9 @@
 <body>
     <header>
         <div class="logo-box"><img src="./images/LOGO.png"></div>
-        <div class="nav-box nav-item" onclick="selectNav(this); selectHome()">หน้าแรก</div>
-        <div class="dropdown-box nav-item" onclick="selectNav(this)">
-            <span id="categoryLabel" onclick="toggleDropdown(); event.stopPropagation();">หมวดหมู่ ▼</span>
+        <div class="nav-box nav-item" onclick="selectHome()">หน้าแรก</div>
+        <div class="dropdown-box nav-item" onclick="toggleDropdown()">
+            <span id="categoryLabel">หมวดหมู่ ▼</span>
             <div class="dropdown-content" id="categoryDropdown">
                 <a class='Category' href="#" onclick="selectCategory('ตลก')">ตลก</a>
                 <a class='Category' href="#" onclick="selectCategory('วิทยาศาสตร์')">วิทยาศาสตร์</a>
@@ -26,8 +26,8 @@
             <button class="search-box">ค้นหา</button>
         </div>
         
-        <div class="login-box nav-item" onclick="selectNav(this)">เข้าสู่ระบบ</div>
-        <div class="register-box nav-item selected" onclick="selectNav(this)">ตะกร้า</div>
+        <div class="login-box nav-item">เข้าสู่ระบบ</div>
+        <div class="register-box nav-item selected">ตะกร้า</div>
     </header>
 
     <div class="page-title-box">ตะกร้าสินค้า</div>
@@ -42,9 +42,12 @@
                     <p>สำนักพิมพ์: สำนักพิมพ์ ABC</p>
                     <p class="price">250 บาท</p>
                 </div>
+                <div class="rental-dates">
+                    <p><strong>วันที่เช่า:</strong> 15/12/2024</p>
+                    <p><strong>วันหมดอายุ:</strong> 22/12/2024</p>
+                </div>
                 <div class="item-controls">
                     <button class="edit-btn" onclick="editItem(1)">แก้ไขรายละเอียดสินค้า</button>
-                    <button class="remove-btn" onclick="removeItem(1)">ลบ</button>
                 </div>
             </div>
 
@@ -56,9 +59,12 @@
                     <p>สำนักพิมพ์: สำนักพิมพ์ GHI</p>
                     <p class="price">320 บาท</p>
                 </div>
+                <div class="rental-dates">
+                    <p><strong>วันที่เช่า:</strong> 16/12/2024</p>
+                    <p><strong>วันหมดอายุ:</strong> 30/12/2024</p>
+                </div>
                 <div class="item-controls">
                     <button class="edit-btn" onclick="editItem(2)">แก้ไขรายละเอียดสินค้า</button>
-                    <button class="remove-btn" onclick="removeItem(2)">ลบ</button>
                 </div>
             </div>
         </div>
@@ -91,17 +97,20 @@
             <div class="modal-body">
                 <h3>แก้ไขรายละเอียดสินค้า</h3>
                 <div class="edit-form">
-                    <label>ชื่อหนังสือ:</label>
+                    <label>ชื่อเรื่อง:</label>
                     <input type="text" id="editTitle" class="edit-input">
-                    
-                    <label>ผู้แต่ง:</label>
-                    <input type="text" id="editAuthor" class="edit-input">
                     
                     <label>สำนักพิมพ์:</label>
                     <input type="text" id="editPublisher" class="edit-input">
                     
-                    <label>ราคา:</label>
-                    <input type="text" id="editPrice" class="edit-input">
+                    <label>หมวดหมู่:</label>
+                    <input type="text" id="editCategory" class="edit-input">
+                    
+                    <label>วันที่เช่า:</label>
+                    <input type="text" id="editRentalDate" class="edit-input">
+                    
+                    <label>วันหมดอายุ:</label>
+                    <input type="text" id="editExpiryDate" class="edit-input">
                     
                     <div class="edit-buttons">
                         <button class="save-btn" onclick="saveChanges()">บันทึก</button>
@@ -121,36 +130,24 @@
             document.getElementById("categoryLabel").textContent = category + " ▼";
             document.getElementById("categoryDropdown").classList.remove("show");
         }
-        
-        function selectNav(element) {
-            var navItems = document.getElementsByClassName("nav-item");
-            for (var i = 0; i < navItems.length; i++) {
-                navItems[i].classList.remove("selected");
-            }
-            element.classList.add("selected");
-        }
 
         function selectHome() {
             window.location.href = "./HomeUser.html";
         }
 
-        function removeItem(itemId) {
-            if (confirm("คุณต้องการลบหนังสือนี้ออกจากตะกร้าหรือไม่?")) {
-                alert("ลบหนังสือแล้ว!");
-            }
-        }
-
         function editItem(itemId) {
             if (itemId === 1) {
                 document.getElementById("editTitle").value = "Sakamoto desu ga?";
-                document.getElementById("editAuthor").value = "นาโนะ ยูกิ";
                 document.getElementById("editPublisher").value = "สำนักพิมพ์ ABC";
-                document.getElementById("editPrice").value = "250";
+                document.getElementById("editCategory").value = "ตลก";
+                document.getElementById("editRentalDate").value = "15/12/2024";
+                document.getElementById("editExpiryDate").value = "22/12/2024";
             } else {
                 document.getElementById("editTitle").value = "มนต์รักฉบับนักสืบ";
-                document.getElementById("editAuthor").value = "ผู้แต่ง D";
                 document.getElementById("editPublisher").value = "สำนักพิมพ์ GHI";
-                document.getElementById("editPrice").value = "320";
+                document.getElementById("editCategory").value = "โรแมนติก";
+                document.getElementById("editRentalDate").value = "16/12/2024";
+                document.getElementById("editExpiryDate").value = "30/12/2024";
             }
             document.getElementById("editModal").style.display = "block";
         }

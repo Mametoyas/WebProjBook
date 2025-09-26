@@ -19,7 +19,17 @@
         </div>
     </header>
 
-    <div class="page-title-box">ข้อมูลหนังสือ</div>
+    <div class="table-header">
+        <div class="left-group">
+            <span class="books-all">หนังสือทั้งหมด</span>
+            <span class="category">หมวดหมู่</span>
+        </div>
+        <div class="right-group">
+            <input type="text" class="search-input" placeholder="ค้นหา...">
+            <button class="search-btn">ค้นหา</button>
+            <button class="add-book-btn" onclick="addNewBook()">เพิ่มหนังสือใหม่</button>
+        </div>
+    </div>
 
     <div class="table-container">
         <table class="stocks-table">
@@ -93,7 +103,6 @@
     </div>
 
     <div class="action-buttons">
-        <button class="add-btn" onclick="addNewBook()">เพิ่มหนังสือใหม่</button>
         <button class="confirm-btn" onclick="saveAllChanges()">บันทึกการเปลี่ยนแปลง</button>
     </div>
 
@@ -125,6 +134,42 @@
                     <div class="edit-buttons">
                         <button class="save-btn" onclick="saveChanges()">บันทึก</button>
                         <button class="cancel-btn" onclick="closeEditModal()">ยกเลิก</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Modal -->
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddModal()">&times;</span>
+            <div class="modal-body">
+                <h2 class="modal-title">เพิ่มหนังสือใหม่</h2>
+                <div class="edit-form">
+                    <label>ชื่อหนังสือ:</label>
+                    <input type="text" id="addTitle" class="edit-input">
+                    
+                    <label>ผู้แต่ง:</label>
+                    <input type="text" id="addAuthor" class="edit-input">
+                    
+                    <label>สำนักพิมพ์:</label>
+                    <input type="text" id="addPublisher" class="edit-input">
+                    
+                    <label>ปีที่พิมพ์:</label>
+                    <input type="text" id="addYear" class="edit-input">
+                    
+                    <label>หมวดหมู่:</label>
+                    <div class="selected-categories" id="selectedCategories"></div>
+                    <button type="button" class="add-category-btn" onclick="showCategoryOptions()">+ เพิ่มหมวดหมู่</button>
+                    <input type="hidden" id="addCategory" value="">
+                    
+                    <label>ราคา:</label>
+                    <input type="text" id="addPrice" class="edit-input">
+                    
+                    <div class="edit-buttons">
+                        <button class="save-btn" onclick="saveNewBook()">เพิ่ม</button>
+                        <button class="cancel-btn" onclick="closeAddModal()">ยกเลิก</button>
                     </div>
                 </div>
             </div>
@@ -178,9 +223,63 @@
         }
 
         function addNewBook() {
+            document.getElementById("addTitle").value = "";
+            document.getElementById("addAuthor").value = "";
+            document.getElementById("addPublisher").value = "";
+            document.getElementById("addYear").value = "";
+            document.getElementById("addCategory").value = "";
+            document.getElementById("addPrice").value = "";
+            document.getElementById("addModal").style.display = "block";
+        }
+
+        function closeAddModal() {
+            document.getElementById("addModal").style.display = "none";
+        }
+
+        function saveNewBook() {
             if (confirm("คุณต้องการเพิ่มหนังสือใหม่หรือไม่?")) {
                 alert("เพิ่มหนังสือใหม่สำเร็จ!");
+                closeAddModal();
             }
+        }
+
+        var selectedCategories = [];
+        var availableCategories = ["ตลก", "เด็ก", "โรแมนติก", "ดราม่า", "วิทยาศาสตร์", "ฮาเร็ม", "Sci-fi", "Shounen", "ชีวิตประจำวัน"];
+
+        function showCategoryOptions() {
+            var options = availableCategories.map(function(cat) {
+                return "- " + cat;
+            }).join("\n");
+            var choice = prompt("เลือกหมวดหมู่ (ใส่ชื่อตรงตามรายการ):\n\n" + options);
+            if (choice && choice.trim() !== "") {
+                addCategoryTag(choice.trim());
+            }
+        }
+
+        function addCategoryTag(category) {
+            if (!selectedCategories.includes(category)) {
+                selectedCategories.push(category);
+                updateCategoryDisplay();
+            }
+        }
+
+        function removeCategoryTag(category) {
+            selectedCategories = selectedCategories.filter(function(cat) {
+                return cat !== category;
+            });
+            updateCategoryDisplay();
+        }
+
+        function updateCategoryDisplay() {
+            var container = document.getElementById("selectedCategories");
+            container.innerHTML = "";
+            selectedCategories.forEach(function(category) {
+                var tag = document.createElement("div");
+                tag.className = "category-tag";
+                tag.innerHTML = category + " <span class='remove' onclick='removeCategoryTag(\"" + category + "\")'>×</span>";
+                container.appendChild(tag);
+            });
+            document.getElementById("addCategory").value = selectedCategories.join(", ");
         }
 
         function saveAllChanges() {
