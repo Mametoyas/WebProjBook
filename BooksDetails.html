@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draft Stocks Management</title>
+    <link href="https://fonts.googleapis.com/css?family=Itim&display=swap" rel="stylesheet" />
+    <link href="./css/BooksDetails.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <div class="logo-box"><img src="./images/LOGO.png"></div>
+        <div class="nav-box nav-item" onclick="selectNav(this); selectHome()">หน้าแรก</div>
+        <div class="nav-box nav-item" onclick="selectNav(this); selectCus()">ลูกค้า</div>
+        <div class="nav-box nav-item selected" onclick="selectNav(this)">ข้อมูลหนังสือ</div>
+        <div class="nav-box nav-item" onclick="selectNav(this)">การชำระเงิน</div>
+        <div class="login-box">
+            <div class="admin-box nav-item" onclick="selectNav(this)">Admin</div>
+        </div>
+    </header>
+
+    <div class="page-title-box">ข้อมูลหนังสือ</div>
+
+    <div class="table-container">
+        <table class="stocks-table">
+            <thead>
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>ชื่อหนังสือ</th>
+                    <th>หมวดหมู่</th>
+                    <th>ผู้แต่ง</th>
+                    <th>สำนักพิมพ์</th>
+                    <th>ปีที่พิมพ์</th>
+                    <th>ราคา</th>
+                    <th>การจัดการ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Sakamoto desu ga?</td>
+                    <td>ตลก</td>
+                    <td>นาโนะ ยูกิ</td>
+                    <td>สำนักพิมพ์ ABC</td>
+                    <td>2020</td>
+                    <td>250 บาท</td>
+                    <td>
+                        <button class="edit-btn" onclick="editBook(1)">แก้ไข</button>
+                        <button class="delete-btn">ลบ</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>แมวเป้า</td>
+                    <td>เด็ก</td>
+                    <td>ผู้แต่ง B</td>
+                    <td>สำนักพิมพ์ XYZ</td>
+                    <td>2019</td>
+                    <td>180 บาท</td>
+                    <td>
+                        <button class="edit-btn" onclick="editBook(2)">แก้ไข</button>
+                        <button class="delete-btn">ลบ</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>มนต์รักฉบับนักสืบ</td>
+                    <td>โรแมนติก</td>
+                    <td>ผู้แต่ง D</td>
+                    <td>สำนักพิมพ์ GHI</td>
+                    <td>2022</td>
+                    <td>320 บาท</td>
+                    <td>
+                        <button class="edit-btn" onclick="editBook(3)">แก้ไข</button>
+                        <button class="delete-btn">ลบ</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>พี่กรรมกรก่อสร้าง</td>
+                    <td>ดราม่า</td>
+                    <td>ผู้แต่ง C</td>
+                    <td>สำนักพิมพ์ DEF</td>
+                    <td>2021</td>
+                    <td>290 บาท</td>
+                    <td>
+                        <button class="edit-btn" onclick="editBook(4)">แก้ไข</button>
+                        <button class="delete-btn">ลบ</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="action-buttons">
+        <button class="add-btn" onclick="addNewBook()">เพิ่มหนังสือใหม่</button>
+        <button class="confirm-btn" onclick="saveAllChanges()">บันทึกการเปลี่ยนแปลง</button>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <div class="modal-body">
+                <h3>แก้ไขข้อมูลหนังสือ</h3>
+                <div class="edit-form">
+                    <label>ชื่อหนังสือ:</label>
+                    <input type="text" id="editTitle" class="edit-input">
+                    
+                    <label>ผู้แต่ง:</label>
+                    <input type="text" id="editAuthor" class="edit-input">
+                    
+                    <label>สำนักพิมพ์:</label>
+                    <input type="text" id="editPublisher" class="edit-input">
+                    
+                    <label>ปีที่พิมพ์:</label>
+                    <input type="text" id="editYear" class="edit-input">
+                    
+                    <label>หมวดหมู่:</label>
+                    <input type="text" id="editCategory" class="edit-input">
+                    
+                    <label>ราคา:</label>
+                    <input type="text" id="editPrice" class="edit-input">
+                    
+                    <div class="edit-buttons">
+                        <button class="save-btn" onclick="saveChanges()">บันทึก</button>
+                        <button class="cancel-btn" onclick="closeEditModal()">ยกเลิก</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectNav(element) {
+            var navItems = document.getElementsByClassName("nav-item");
+            for (var i = 0; i < navItems.length; i++) {
+                navItems[i].classList.remove("selected");
+            }
+            element.classList.add("selected");
+        }
+
+        function selectHome() {
+            window.location.href = "./HomeAdmin.html";
+        }
+
+        function selectCus() {
+            window.location.href = "./CustomerDetails.html";
+        }
+
+        function editBook(bookId) {
+            var books = {
+                1: {title: "Sakamoto desu ga?", author: "นาโนะ ยูกิ", publisher: "สำนักพิมพ์ ABC", year: "2020", category: "ตลก", price: "250"},
+                2: {title: "แมวเป้า", author: "ผู้แต่ง B", publisher: "สำนักพิมพ์ XYZ", year: "2019", category: "เด็ก", price: "180"},
+                3: {title: "มนต์รักฉบับนักสืบ", author: "ผู้แต่ง D", publisher: "สำนักพิมพ์ GHI", year: "2022", category: "โรแมนติก", price: "320"},
+                4: {title: "พี่กรรมกรก่อสร้าง", author: "ผู้แต่ง C", publisher: "สำนักพิมพ์ DEF", year: "2021", category: "ดราม่า", price: "290"}
+            };
+            
+            var book = books[bookId];
+            document.getElementById("editTitle").value = book.title;
+            document.getElementById("editAuthor").value = book.author;
+            document.getElementById("editPublisher").value = book.publisher;
+            document.getElementById("editYear").value = book.year;
+            document.getElementById("editCategory").value = book.category;
+            document.getElementById("editPrice").value = book.price;
+            document.getElementById("editModal").style.display = "block";
+        }
+
+        function closeEditModal() {
+            document.getElementById("editModal").style.display = "none";
+        }
+
+        function saveChanges() {
+            if (confirm("คุณต้องการบันทึกการเปลี่ยนแปลงหรือไม่?")) {
+                alert("บันทึกการเปลี่ยนแปลงแล้ว!");
+                closeEditModal();
+            }
+        }
+
+        function addNewBook() {
+            if (confirm("คุณต้องการเพิ่มหนังสือใหม่หรือไม่?")) {
+                alert("เพิ่มหนังสือใหม่สำเร็จ!");
+            }
+        }
+
+        function saveAllChanges() {
+            if (confirm("คุณต้องการบันทึกการเปลี่ยนแปลงทั้งหมดหรือไม่?")) {
+                alert("บันทึกการเปลี่ยนแปลงทั้งหมดสำเร็จ!");
+            }
+        }
+    </script>
+</body>
+</html>

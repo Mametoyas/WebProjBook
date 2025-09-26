@@ -10,8 +10,8 @@
     <header>
         <div class="logo-box"><img src="./images/LOGO.png"></div>
         <div class="nav-box nav-item" onclick="selectNav(this); showBreadcrumb(); selectHome()">หน้าแรก</div>
-        <div class="nav-box nav-item" onclick="selectNav(this);">ลูกค้า</div>
-        <div class="nav-box nav-item" onclick="selectNav(this)">ข้อมูลหนังสือ</div>
+        <div class="nav-box nav-item selected" onclick="selectNav(this);">ลูกค้า</div>
+        <div class="nav-box nav-item" onclick="selectNav(this); showBookDetails();">ข้อมูลหนังสือ</div>
         <div class="nav-box nav-item" onclick="selectNav(this)">การชำระเงิน</div>
         <div class="login-box">
             <div class="admin-box nav-item" onclick="selectNav(this)">Admin</div>
@@ -82,7 +82,8 @@
     </div>
 
     <div class="action-buttons">
-        <button class="confirm-btn">ยืนยันการชำระเงิน</button>
+        <button class="add-btn" onclick="addNewCustomer()">เพิ่มลูกค้า</button>
+        <button class="confirm-btn" onclick="saveAllChanges()">บันทึก</button>
     </div>
 
     <script>
@@ -100,6 +101,22 @@
 
         function selectHome() {
             window.location.href = "./HomeAdmin.html";
+        }
+
+        function showBookDetails(){
+            window.location.href = './BooksDetails.html'
+        }
+
+        function addNewCustomer() {
+            if (confirm("คุณต้องการเพิ่มลูกค้าใหม่หรือไม่?")) {
+                alert("เพิ่มลูกค้าใหม่สำเร็จ!");
+            }
+        }
+
+        function saveAllChanges() {
+            if (confirm("คุณต้องการบันทึกการเปลี่ยนแปลงหรือไม่?")) {
+                alert("บันทึกข้อมูลสำเร็จ!");
+            }
         }
     </script>
 </body>

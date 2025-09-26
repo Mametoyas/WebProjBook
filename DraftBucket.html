@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link href="https://fonts.googleapis.com/css?family=Itim&display=swap" rel="stylesheet" />
+    <link href="./css/DraftBucket.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <div class="logo-box"><img src="./images/LOGO.png"></div>
+        <div class="nav-box nav-item" onclick="selectNav(this); selectHome()">หน้าแรก</div>
+        <div class="dropdown-box nav-item" onclick="selectNav(this)">
+            <span id="categoryLabel" onclick="toggleDropdown(); event.stopPropagation();">หมวดหมู่ ▼</span>
+            <div class="dropdown-content" id="categoryDropdown">
+                <a class='Category' href="#" onclick="selectCategory('ตลก')">ตลก</a>
+                <a class='Category' href="#" onclick="selectCategory('วิทยาศาสตร์')">วิทยาศาสตร์</a>
+                <a class='Category' href="#" onclick="selectCategory('ดราม่า')">ดราม่า</a>
+                <a class='Category' href="#" onclick="selectCategory('โรแมนติก')">โรแมนติก</a>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-textbox" placeholder="ค้นหาหนังสือ...">
+            <button class="search-box">ค้นหา</button>
+        </div>
+        
+        <div class="login-box nav-item" onclick="selectNav(this)">เข้าสู่ระบบ</div>
+        <div class="register-box nav-item selected" onclick="selectNav(this)">ตะกร้า</div>
+    </header>
+
+    <div class="page-title-box">ตะกร้าสินค้า</div>
+
+    <div class="cart-container">
+        <div class="cart-items">
+            <div class="cart-item">
+                <div class="item-image" style="background-image: url('./images/sakamoto.png')"></div>
+                <div class="item-details">
+                    <h3>Sakamoto desu ga?</h3>
+                    <p>ผู้แต่ง: นาโนะ ยูกิ</p>
+                    <p>สำนักพิมพ์: สำนักพิมพ์ ABC</p>
+                    <p class="price">250 บาท</p>
+                </div>
+                <div class="item-controls">
+                    <button class="edit-btn" onclick="editItem(1)">แก้ไขรายละเอียดสินค้า</button>
+                    <button class="remove-btn" onclick="removeItem(1)">ลบ</button>
+                </div>
+            </div>
+
+            <div class="cart-item">
+                <div class="item-image" style="background-image: url('./images/detective.png')"></div>
+                <div class="item-details">
+                    <h3>มนต์รักฉบับนักสืบ</h3>
+                    <p>ผู้แต่ง: ผู้แต่ง D</p>
+                    <p>สำนักพิมพ์: สำนักพิมพ์ GHI</p>
+                    <p class="price">320 บาท</p>
+                </div>
+                <div class="item-controls">
+                    <button class="edit-btn" onclick="editItem(2)">แก้ไขรายละเอียดสินค้า</button>
+                    <button class="remove-btn" onclick="removeItem(2)">ลบ</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="cart-summary">
+            <div class="summary-box">
+                <h3>สรุปคำสั่งซื้อ</h3>
+                <div class="summary-item">
+                    <span>Sakamoto desu ga?</span>
+                    <span>250 บาท</span>
+                </div>
+                <div class="summary-item">
+                    <span>มนต์รักฉบับนักสืบ</span>
+                    <span>320 บาท</span>
+                </div>
+                <div class="summary-divider"></div>
+                <div class="summary-total">
+                    <span>รวมทั้งหมด</span>
+                    <span>570 บาท</span>
+                </div>
+                <button class="checkout-btn" onclick="proceedToCheckout()">ดำเนินการชำระเงิน</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <div class="modal-body">
+                <h3>แก้ไขรายละเอียดสินค้า</h3>
+                <div class="edit-form">
+                    <label>ชื่อหนังสือ:</label>
+                    <input type="text" id="editTitle" class="edit-input">
+                    
+                    <label>ผู้แต่ง:</label>
+                    <input type="text" id="editAuthor" class="edit-input">
+                    
+                    <label>สำนักพิมพ์:</label>
+                    <input type="text" id="editPublisher" class="edit-input">
+                    
+                    <label>ราคา:</label>
+                    <input type="text" id="editPrice" class="edit-input">
+                    
+                    <div class="edit-buttons">
+                        <button class="save-btn" onclick="saveChanges()">บันทึก</button>
+                        <button class="cancel-btn" onclick="closeEditModal()">ยกเลิก</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById("categoryDropdown").classList.toggle("show");
+        }
+        
+        function selectCategory(category) {
+            document.getElementById("categoryLabel").textContent = category + " ▼";
+            document.getElementById("categoryDropdown").classList.remove("show");
+        }
+        
+        function selectNav(element) {
+            var navItems = document.getElementsByClassName("nav-item");
+            for (var i = 0; i < navItems.length; i++) {
+                navItems[i].classList.remove("selected");
+            }
+            element.classList.add("selected");
+        }
+
+        function selectHome() {
+            window.location.href = "./HomeUser.html";
+        }
+
+        function removeItem(itemId) {
+            if (confirm("คุณต้องการลบหนังสือนี้ออกจากตะกร้าหรือไม่?")) {
+                alert("ลบหนังสือแล้ว!");
+            }
+        }
+
+        function editItem(itemId) {
+            if (itemId === 1) {
+                document.getElementById("editTitle").value = "Sakamoto desu ga?";
+                document.getElementById("editAuthor").value = "นาโนะ ยูกิ";
+                document.getElementById("editPublisher").value = "สำนักพิมพ์ ABC";
+                document.getElementById("editPrice").value = "250";
+            } else {
+                document.getElementById("editTitle").value = "มนต์รักฉบับนักสืบ";
+                document.getElementById("editAuthor").value = "ผู้แต่ง D";
+                document.getElementById("editPublisher").value = "สำนักพิมพ์ GHI";
+                document.getElementById("editPrice").value = "320";
+            }
+            document.getElementById("editModal").style.display = "block";
+        }
+
+        function closeEditModal() {
+            document.getElementById("editModal").style.display = "none";
+        }
+
+        function saveChanges() {
+            alert("บันทึกการเปลี่ยนแปลงแล้ว!");
+            closeEditModal();
+        }
+
+        function proceedToCheckout() {
+            alert("ไปยังหน้าชำระเงิน!");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('span')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    dropdowns[i].classList.remove('show');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
