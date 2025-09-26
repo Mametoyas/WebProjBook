@@ -48,7 +48,7 @@
 * **Backend:** PHP (Laravel)  
 * **Database:** MySQL  
 * **Authentication:** Laravel Auth (Session-based)  
-* **Payment Integration:** Manual Transfer / Bank API Simulation  
+* **Payment Integration:** Manual Transfer / Mobile Banking
 
 ---
 
