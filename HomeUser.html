@@ -7,14 +7,8 @@
     <link href="./css/HomeUser.css" rel="stylesheet" />
 </head>
 <body>
-
-    <!-- <?php 
-    isset(){
-
-    }
-    ?> -->
     <header>
-        <div class="logo-box"></div>
+        <div class="logo-box"><img src="./images/LOGO.png"></div>
         <div class="nav-box nav-item selected" onclick="selectNav(this); showBreadcrumb()">หน้าแรก</div>
         <div class="dropdown-box nav-item" onclick="selectNav(this)">
             <span id="categoryLabel" onclick="toggleDropdown(); event.stopPropagation();">หมวดหมู่ ▼</span>
@@ -92,15 +86,29 @@
             <span class="close" onclick="closeModal()">&times;</span>
             <div class="modal-body">
                 <div class="modal-left">
-                    <div class="modal-image"></div>
-                    <h3 id="modalTitle"></h3>
+                    <div class="image-title-section">
+                        <div class="modal-image"></div>
+                        <h3 id="modalTitle"></h3>
+                    </div>
+                    <div class="modal-labels">
+                        <p><strong>ผู้แต่ง</strong></p>
+                        <p><strong>สำนักพิมพ์</strong></p>
+                        <p><strong>ปีที่พิมพ์</strong></p>
+                        <p><strong>เนื้อเรื่องย่อ</strong></p>
+                    </div>
                 </div>
                 <div class="modal-right">
-                    <p><strong>ผู้แต่ง:</strong> <span id="modalAuthor"></span></p>
-                    <p><strong>สำนักพิมพ์:</strong> <span id="modalPublisher"></span></p>
-                    <p><strong>ปีที่พิมพ์:</strong> <span id="modalYear"></span></p>
-                    <p><strong>เนื้อเรื่องย่อ:</strong></p>
-                    <p id="modalSummary"></p>
+                    <div class="modal-values">
+                        <p id="modalAuthor"></p>
+                        <p id="modalPublisher"></p>
+                        <p id="modalYear"></p>
+                        <textarea id="modalSummary" readonly></textarea>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="red-button" onclick="addToCart()">เพิ่มเข้าตะกร้า</button>
+                        <button class="red-button" onclick="addToFavorites()">เพิ่มเข้ารายการโปรด</button>
+                        <button class="red-button" onclick="checkout()">ชำระเงิน</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -148,6 +156,18 @@
         
         function closeModal() {
             document.getElementById("bookModal").style.display = "none";
+        }
+        
+        function addToCart() {
+            alert("เพิ่มเข้าตะกร้าแล้ว!");
+        }
+        
+        function addToFavorites() {
+            alert("เพิ่มเข้ารายการโปรดแล้ว!");
+        }
+        
+        function checkout() {
+            alert("ไปยังหน้าชำระเงิน!");
         }
         
         window.onclick = function(event) {

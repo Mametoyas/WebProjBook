@@ -8,10 +8,10 @@
 </head>
 <body>
     <header>
-        <div class="logo-box"></div>
+        <div class="logo-box"><img src="./images/LOGO.png"></div>
         <div class="nav-box nav-item selected" onclick="selectNav(this); showBreadcrumb()">หน้าแรก</div>
         <!-- <div class="nav-box nav-item" onclick="selectNav(this)">ลูกค้า</div> -->
-        <div class="nav-box nav-item selected" onclick="selectNav(this); selectCus()">ลูกค้า</div>
+        <div class="nav-box nav-item" onclick="selectNav(this); selectCus()">ลูกค้า</div>
 
         <div class="nav-box nav-item" onclick="selectNav(this)">ข้อมูลหนังสือ</div>
         <div class="nav-box nav-item" onclick="selectNav(this)">การชำระเงิน</div>
@@ -38,14 +38,36 @@
         <div class="book-box" onclick="showBookDetail('มนต์รักฉบับนักสืบ', 'ผู้แต่ง D', 'สำนักพิมพ์ GHI', '2022', 'เรื่องราวโรแมนติกของนักสืบที่ต้องคลี่คลายคดี', 'detective.png')">
             <div class="book-image" style="background-image: url('./images/detective.png')"></div>
             <div class="book-title">มนต์รักฉบับนักสืบ</div>
-        </div>
-        <div class="book-box" onclick="showBookDetail('Sakamoto desu ga?', 'นาโนะ ยูกิ', 'สำนักพิมพ์ ABC', '2020', 'เรื่องราวของนักเรียนมัธยมที่เก่งที่สุดในโลก', 'sakamoto.png')">
+        </div>        <div class="book-box" onclick="showBookDetail('Sakamoto desu ga?', 'นาโนะ ยูกิ', 'สำนักพิมพ์ ABC', '2020', 'เรื่องราวของนักเรียนมัธยมที่เก่งที่สุดในโลก', 'sakamoto.png')">
             <div class="book-image" style="background-image: url('./images/sakamoto.png')"></div>
             <div class="book-title">Sakamoto desu ga?</div>
         </div>
         <div class="book-box" onclick="showBookDetail('แมวเป้า', 'ผู้แต่ง B', 'สำนักพิมพ์ XYZ', '2019', 'เรื่องของแมวตัวน้อยที่มีเรื่องน่ารัก', 'cat.png')">
             <div class="book-image" style="background-image: url('./images/cat.png')"></div>
             <div class="book-title">แมวเป้า</div>
+        </div>
+        <div class="book-box" onclick="showBookDetail('พี่กรรมกรก่อสร้าง', 'ผู้แต่ง C', 'สำนักพิมพ์ DEF', '2021', 'เรื่องของคนงานก่อสร้างที่มีความสามารถพิเศษ', 'construction.png')">
+            <div class="book-image" style="background-image: url('./images/construction.png')"></div>
+            <div class="book-title">พี่กรรมกรก่อสร้าง</div>
+        </div>
+        <div class="book-box" onclick="showBookDetail('มนต์รักฉบับนักสืบ', 'ผู้แต่ง D', 'สำนักพิมพ์ GHI', '2022', 'เรื่องราวโรแมนติกของนักสืบที่ต้องคลี่คลายคดี', 'detective.png')">
+            <div class="book-image" style="background-image: url('./images/detective.png')"></div>
+            <div class="book-title">มนต์รักฉบับนักสืบ</div>
+        </div>        <div class="book-box" onclick="showBookDetail('Sakamoto desu ga?', 'นาโนะ ยูกิ', 'สำนักพิมพ์ ABC', '2020', 'เรื่องราวของนักเรียนมัธยมที่เก่งที่สุดในโลก', 'sakamoto.png')">
+            <div class="book-image" style="background-image: url('./images/sakamoto.png')"></div>
+            <div class="book-title">Sakamoto desu ga?</div>
+        </div>
+        <div class="book-box" onclick="showBookDetail('แมวเป้า', 'ผู้แต่ง B', 'สำนักพิมพ์ XYZ', '2019', 'เรื่องของแมวตัวน้อยที่มีเรื่องน่ารัก', 'cat.png')">
+            <div class="book-image" style="background-image: url('./images/cat.png')"></div>
+            <div class="book-title">แมวเป้า</div>
+        </div>
+        <div class="book-box" onclick="showBookDetail('พี่กรรมกรก่อสร้าง', 'ผู้แต่ง C', 'สำนักพิมพ์ DEF', '2021', 'เรื่องของคนงานก่อสร้างที่มีความสามารถพิเศษ', 'construction.png')">
+            <div class="book-image" style="background-image: url('./images/construction.png')"></div>
+            <div class="book-title">พี่กรรมกรก่อสร้าง</div>
+        </div>
+        <div class="book-box" onclick="showBookDetail('มนต์รักฉบับนักสืบ', 'ผู้แต่ง D', 'สำนักพิมพ์ GHI', '2022', 'เรื่องราวโรแมนติกของนักสืบที่ต้องคลี่คลายคดี', 'detective.png')">
+            <div class="book-image" style="background-image: url('./images/detective.png')"></div>
+            <div class="book-title">มนต์รักฉบับนักสืบ</div>
         </div>
     </div>
     
@@ -54,15 +76,29 @@
             <span class="close" onclick="closeModal()">&times;</span>
             <div class="modal-body">
                 <div class="modal-left">
-                    <div class="modal-image"></div>
-                    <h3 id="modalTitle"></h3>
+                    <div class="image-title-section">
+                        <div class="modal-image"></div>
+                        <h3 id="modalTitle"></h3>
+                    </div>
+                    <div class="modal-labels">
+                        <p><strong>ผู้แต่ง</strong></p>
+                        <p><strong>สำนักพิมพ์</strong></p>
+                        <p><strong>ปีที่พิมพ์</strong></p>
+                        <p><strong>เนื้อเรื่องย่อ</strong></p>
+                    </div>
                 </div>
                 <div class="modal-right">
-                    <p><strong>ผู้แต่ง:</strong> <span id="modalAuthor"></span></p>
-                    <p><strong>สำนักพิมพ์:</strong> <span id="modalPublisher"></span></p>
-                    <p><strong>ปีที่พิมพ์:</strong> <span id="modalYear"></span></p>
-                    <p><strong>เนื้อเรื่องย่อ:</strong></p>
-                    <p id="modalSummary"></p>
+                    <div class="modal-values">
+                        <p id="modalAuthor"></p>
+                        <p id="modalPublisher"></p>
+                        <p id="modalYear"></p>
+                        <textarea id="modalSummary" readonly></textarea>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="red-button" onclick="addToCart()">เพิ่มเข้าตะกร้า</button>
+                        <button class="red-button" onclick="addToFavorites()">เพิ่มเข้ารายการโปรด</button>
+                        <button class="red-button" onclick="checkout()">ชำระเงิน</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -101,6 +137,18 @@
         
         function closeModal() {
             document.getElementById("bookModal").style.display = "none";
+        }
+        
+        function addToCart() {
+            alert("เพิ่มเข้าตะกร้าแล้ว!");
+        }
+        
+        function addToFavorites() {
+            alert("เพิ่มเข้ารายการโปรดแล้ว!");
+        }
+        
+        function checkout() {
+            alert("ไปยังหน้าชำระเงิน!");
         }
         
         function selectCus() {
