@@ -78,24 +78,22 @@ flowchart TD
 ## 🎭 Use Case Diagram
 
 ```mermaid
-usecaseDiagram
-actor User
-actor Admin
+flowchart TD
+    User --> RegisterLogin[Register / Login]
+    User --> Browse[Browse Books]
+    User --> Select[Select Category]
+    User --> View[View Book Details]
+    User --> Favorite[Add to Favorite]
+    User --> Cart[Add to Cart]
+    User --> Payment[Make Payment]
+    User --> Upload[Upload Slip]
+    User --> Read[Read Ebook]
 
-User --> (Register / Login)
-User --> (Browse Books)
-User --> (Select Category)
-User --> (View Book Details)
-User --> (Add to Favorite)
-User --> (Add to Cart)
-User --> (Make Payment)
-User --> (Upload Slip)
-User --> (Read Ebook)
+    Admin --> ManageBooks[Manage Books]
+    Admin --> ManageCategories[Manage Categories]
+    Admin --> ManageUsers[Manage Users]
+    Admin --> Verify[Verify Payments]
 
-Admin --> (Manage Books)
-Admin --> (Manage Categories)
-Admin --> (Manage Users)
-Admin --> (Verify Payments)
 
 ```
 
