@@ -44,11 +44,11 @@
 
 ## 🛠️ Technologies Used
 
-* **Frontend:** HTML5, Jetsteam, PHP, CSS
-* **Backend:** **นายจักรพรรดิ์ มั่งกูล**, **นายเชิดตระกูล แข็งขัน**, **นายกฤติศักดิ์ นนทะคำจัน**, **นายชัชติยะ สินธุธรรม**
-* **Database:** MySQL
-* **Authentication:** 
-* **Payment Integration:** 
+* **Frontend:** HTML5, CSS3, JavaScript, Bootstrap / Jetstream
+* **Backend:** PHP (Laravel)  
+* **Database:** MySQL  
+* **Authentication:** Laravel Auth (Session-based)  
+* **Payment Integration:** Manual Transfer / Bank API Simulation  
 
 ---
 
@@ -96,6 +96,7 @@ Admin --> (Manage Books)
 Admin --> (Manage Categories)
 Admin --> (Manage Users)
 Admin --> (Verify Payments)
+
 ```
 
 ---
