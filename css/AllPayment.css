@@ -119,6 +119,15 @@ header {
   font-size: 14px;
 }
 
+.status-no-confirmed {
+  background: rgb(255, 95, 87);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 14px;
+}
+
+
 .status-pending {
   background: #FF9800;
   color: white;
@@ -136,7 +145,7 @@ header {
   cursor: pointer;
   font-family: 'Itim', sans-serif;
   font-size: 14px;
-  margin-right: 5px;
+  margin-right: 20px;
 }
 
 .view-slip-btn:hover {
@@ -152,8 +161,39 @@ header {
   cursor: pointer;
   font-family: 'Itim', sans-serif;
   font-size: 14px;
+  margin-right: 20px;
 }
 
 .delete-btn:hover {
   background: rgba(255,95,87,0.8);
+}
+
+.confirm-btn {
+  background: rgba(23, 201, 0);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Itim', sans-serif;
+  font-size: 14px;
+}
+
+.confirm-btn:hover {
+  background: rgb(23, 201, 0);
+}
+
+.edit-btn {
+  background: rgb(255, 149, 0);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Itim', sans-serif;
+  font-size: 14px;
+}
+
+.edit-btn:hover {
+  background: rgb(255, 149, 0);
 }
