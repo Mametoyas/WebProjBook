@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
+    <title>ตะกร้าสินค้า</title>
+    <link rel="icon" type="image/png" href="./images/LOGO.png">
     <link href="https://fonts.googleapis.com/css?family=Itim&display=swap" rel="stylesheet" />
     <link href="./css/DraftBucket.css" rel="stylesheet" />
 </head>
@@ -95,27 +96,42 @@
         <div class="modal-content">
             <span class="close" onclick="closeEditModal()">&times;</span>
             <div class="modal-body">
-                <h3>แก้ไขรายละเอียดสินค้า</h3>
-                <div class="edit-form">
-                    <label>ชื่อเรื่อง:</label>
-                    <input type="text" id="editTitle" class="edit-input">
-                    
-                    <label>สำนักพิมพ์:</label>
-                    <input type="text" id="editPublisher" class="edit-input">
-                    
-                    <label>หมวดหมู่:</label>
-                    <input type="text" id="editCategory" class="edit-input">
-                    
-                    <label>วันที่เช่า:</label>
-                    <input type="text" id="editRentalDate" class="edit-input">
-                    
-                    <label>วันหมดอายุ:</label>
-                    <input type="text" id="editExpiryDate" class="edit-input">
-                    
-                    <div class="edit-buttons">
-                        <button class="save-btn" onclick="saveChanges()">บันทึก</button>
-                        <button class="cancel-btn" onclick="closeEditModal()">ยกเลิก</button>
-                    </div>
+                <h3 style="font-size: 24px; font-weight: bold; margin-bottom: 20px;">แก้ไขรายละเอียดสินค้า</h3>
+                <table class="edit-form" style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding-right: 15px;">
+                            <label>ชื่อเรื่อง:</label><br>
+                            <input type="text" id="editTitle" class="edit-input" readonly style="background-color: #f5f5f5; width: 100%; margin-bottom: 15px;">
+                            
+                            <label>สำนักพิมพ์:</label><br>
+                            <input type="text" id="editPublisher" class="edit-input" readonly style="background-color: #f5f5f5; width: 100%; margin-bottom: 15px;">
+                            
+                            <label>หมวดหมู่:</label><br>
+                            <input type="text" id="editCategory" class="edit-input" readonly style="background-color: #f5f5f5; width: 100%;">
+                        </td>
+                        
+                        <td style="width: 50%; vertical-align: top; padding-left: 15px;">
+                            <label>วันที่เช่า:</label><br>
+                            <input type="date" id="editRentalDate" class="edit-input" onchange="calculateExpiryDate()" style="width: 100%; margin-bottom: 15px;">
+                            
+                            <label>ระยะเวลายืม:</label><br>
+                            <select id="rentalDuration" class="edit-input" onchange="calculateExpiryDate()" style="width: 100%; margin-bottom: 15px;">
+                                <option value="7">7 วัน</option>
+                                <option value="14">14 วัน</option>
+                                <option value="30">30 วัน</option>
+                                <option value="60">60 วัน</option>
+                                <option value="90">90 วัน</option>
+                            </select>
+                            
+                            <label>วันหมดอายุ:</label><br>
+                            <input type="text" id="editExpiryDate" class="edit-input" readonly style="background-color: #f5f5f5; width: 100%;">
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="edit-buttons" style="margin-top: 20px; text-align: center;">
+                    <button class="save-btn" onclick="saveChanges()">บันทึก</button>
+                    <button class="cancel-btn" onclick="closeEditModal()">ยกเลิก</button>
                 </div>
             </div>
         </div>
@@ -140,16 +156,56 @@
                 document.getElementById("editTitle").value = "Sakamoto desu ga?";
                 document.getElementById("editPublisher").value = "สำนักพิมพ์ ABC";
                 document.getElementById("editCategory").value = "ตลก";
-                document.getElementById("editRentalDate").value = "15/12/2024";
-                document.getElementById("editExpiryDate").value = "22/12/2024";
+                document.getElementById("editRentalDate").value = "2024-12-15";
+                document.getElementById("rentalDuration").value = "7";
             } else {
                 document.getElementById("editTitle").value = "มนต์รักฉบับนักสืบ";
                 document.getElementById("editPublisher").value = "สำนักพิมพ์ GHI";
                 document.getElementById("editCategory").value = "โรแมนติก";
-                document.getElementById("editRentalDate").value = "16/12/2024";
-                document.getElementById("editExpiryDate").value = "30/12/2024";
+                document.getElementById("editRentalDate").value = "2024-12-16";
+                document.getElementById("rentalDuration").value = "14";
             }
+            calculateExpiryDate();
             document.getElementById("editModal").style.display = "block";
+        }
+        
+        function calculateExpiryDate() {
+            const rentalDate = document.getElementById("editRentalDate").value;
+            const duration = parseInt(document.getElementById("rentalDuration").value);
+
+            if (rentalDate && duration) {
+                const startDate = new Date(rentalDate);
+                const expiryDate = new Date(startDate);
+                expiryDate.setDate(startDate.getDate() + duration);
+
+                // แสดงวันหมดอายุเป็น DD/MM/YYYY
+                const expiryDay = String(expiryDate.getDate()).padStart(2, '0');
+                const expiryMonth = String(expiryDate.getMonth() + 1).padStart(2, '0');
+                const expiryYear = expiryDate.getFullYear();
+
+                document.getElementById("editExpiryDate").value = `${expiryMonth}/${expiryDay}/${expiryYear}`;
+
+                // แปลงวันที่เช่าเป็น DD/MM/YYYY ด้วย
+                const rentalDay = String(startDate.getDate()).padStart(2, '0');
+                const rentalMonth = String(startDate.getMonth() + 1).padStart(2, '0');
+                const rentalYear = startDate.getFullYear();
+
+                // อัพเดตวันที่เช่าในหน้าหลัก
+                updateMainPageDate(`${rentalMonth}/${rentalDay}/${rentalYear}`, `${expiryMonth}/${expiryDay}/${expiryYear}`);
+            }
+        }
+        
+        function updateMainPageDate(rentalDateISO, expiryDateFormatted) {
+            // แปลงวันที่เช่าจาก YYYY-MM-DD เป็น DD/MM/YYYY
+            const date = new Date(rentalDateISO);
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            const rentalDateFormatted = `${day}/${month}/${year}`;
+            
+            // อัพเดตวันที่ในหน้าหลัก (อาจต้องปรับปรุงตาม itemId ที่กำลังแก้ไข)
+            console.log('วันที่เช่า:', rentalDateFormatted);
+            console.log('วันหมดอายุ:', expiryDateFormatted);
         }
 
         function closeEditModal() {
