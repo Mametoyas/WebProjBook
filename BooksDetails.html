@@ -13,7 +13,7 @@
         <div class="nav-box nav-item" onclick="selectNav(this); selectHome()">หน้าแรก</div>
         <div class="nav-box nav-item" onclick="selectNav(this); selectCus()">ลูกค้า</div>
         <div class="nav-box nav-item selected" onclick="selectNav(this)">ข้อมูลหนังสือ</div>
-        <div class="nav-box nav-item" onclick="selectNav(this)">ยืนยันการชำระเงิน</div>
+        <div class="nav-box nav-item" onclick="selectNav(this); selectPayment()">ยืนยันการชำระเงิน</div>
         <div class="login-box">
             <div class="admin-box nav-item" onclick="selectNav(this)">Admin</div>
         </div>
@@ -193,6 +193,10 @@
             window.location.href = "./CustomerDetails.html";
         }
 
+        function selectPayment(){
+            window.location.href = "./AllPayment.html";
+        }
+        
         function editBook(bookId) {
             var books = {
                 1: {title: "Sakamoto desu ga?", author: "นาโนะ ยูกิ", publisher: "สำนักพิมพ์ ABC", year: "2020", category: "ตลก", price: "250"},
@@ -287,6 +291,7 @@
                 alert("บันทึกการเปลี่ยนแปลงทั้งหมดสำเร็จ!");
             }
         }
+
     </script>
 </body>
 </html>

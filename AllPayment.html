@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Management</title>
+    <link href="https://fonts.googleapis.com/css?family=Itim&display=swap" rel="stylesheet" />
+    <link href="./css/AllPayment.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <div class="logo-box"><img src="./images/LOGO.png"></div>
+        <div class="nav-box nav-item" onclick="selectNav(this); selectHome();">หน้าแรก</div>
+        <div class="nav-box nav-item" onclick="selectNav(this); selectCus();">ลูกค้า</div>
+        <div class="nav-box nav-item" onclick="selectNav(this); showBookDetails();">ข้อมูลหนังสือ</div>
+        <div class="nav-box nav-item selected" onclick="selectNav(this)">ยืนยันการชำระเงิน</div>
+        
+        <div class="login-box">
+            <div class="admin-box nav-item" onclick="selectNav(this)">Admin</div>
+        </div>
+    </header>
+
+    <div class="filter-container">
+        <button class="filter-btn active">ทั้งหมด</button>
+        <button class="filter-btn">ยืนยันการชำระเงินแล้ว</button>
+        <button class="filter-btn">ยังไม่ยืนยันการชำระเงิน</button>
+    </div>
+
+    <div class="table-container">
+        <table class="payment-table">
+            <thead>
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>รูป</th>
+                    <th>วันที่</th>
+                    <th>เวลา</th>
+                    <th>สถานะ</th>
+                    <th>การจัดการ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>URL/รูป</td>
+                    <td>01/01/2005</td>
+                    <td>01:01:01</td>
+                    <td><span class="status-confirmed">ยืนยันแล้ว</span></td>
+                    <td>
+                        <button class="view-slip-btn" onclick="viewSlip(1)">ดูสลิป</button>
+                        <button class="delete-btn" onclick="return confirm('Are you sure?')">ลบ</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>URL/รูป</td>
+                    <td>01/01/2005</td>
+                    <td>08:01:01</td>
+                    <td><span class="status-confirmed">ยืนยันแล้ว</span></td>
+                    <td>
+                        <button class="view-slip-btn" onclick="viewSlip(2)">ดูสลิป</button>
+                        <button class="delete-btn" onclick="return confirm('Are you sure?')">ลบ</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>URL/รูป</td>
+                    <td>01/01/2005</td>
+                    <td>07:01:01</td>
+                    <td><span class="status-confirmed">ยืนยันแล้ว</span></td>
+                    <td>
+                        <button class="view-slip-btn" onclick="viewSlip(3)">ดูสลิป</button>
+                        <button class="delete-btn" onclick="return confirm('Are you sure?')">ลบ</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>URL/รูป</td>
+                    <td>01/01/2005</td>
+                    <td>06:01:01</td>
+                    <td><span class="status-confirmed">ยืนยันแล้ว</span></td>
+                    <td>
+                        <button class="view-slip-btn" onclick="viewSlip(4)">ดูสลิป</button>
+                        <button class="delete-btn" onclick="return confirm('Are you sure?')">ลบ</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>URL/รูป</td>
+                    <td>01/01/2005</td>
+                    <td>05:01:01</td>
+                    <td><span class="status-confirmed">ยืนยันแล้ว</span></td>
+                    <td>
+                        <button class="view-slip-btn" onclick="viewSlip(5)">ดูสลิป</button>
+                        <button class="delete-btn" onclick="return confirm('Are you sure?')">ลบ</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>URL/รูป</td>
+                    <td>01/01/2005</td>
+                    <td>04:01:01</td>
+                    <td><span class="status-confirmed">ยืนยันแล้ว</span></td>
+                    <td>
+                        <button class="view-slip-btn" onclick="viewSlip(6)">ดูสลิป</button>
+                        <button class="delete-btn" onclick="return confirm('Are you sure?')">ลบ</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>URL/รูป</td>
+                    <td>01/01/2005</td>
+                    <td>03:01:01</td>
+                    <td><span class="status-confirmed">ยืนยันแล้ว</span></td>
+                    <td>
+                        <button class="view-slip-btn" onclick="viewSlip(7)">ดูสลิป</button>
+                        <button class="delete-btn" onclick="return confirm('Are you sure?')">ลบ</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>URL/รูป</td>
+                    <td>01/01/2005</td>
+                    <td>02:01:01</td>
+                    <td><span class="status-confirmed">ยืนยันแล้ว</span></td>
+                    <td>
+                        <button class="view-slip-btn" onclick="viewSlip(8)">ดูสลิป</button>
+                        <button class="delete-btn" onclick="return confirm('Are you sure?')">ลบ</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function selectNav(element) {
+            var navItems = document.getElementsByClassName("nav-item");
+            for (var i = 0; i < navItems.length; i++) {
+                navItems[i].classList.remove("selected");
+            }
+            element.classList.add("selected");
+        }
+        
+        function viewSlip(id) {
+            alert('ดูสลิปรายการที่ ' + id);
+        }
+
+        
+        function showBookDetails(){
+            window.location.href = './BooksDetails.html'
+        }
+
+        function selectHome() {
+            window.location.href = "./HomeAdmin.html";
+        }
+
+        function selectCus() {
+            window.location.href = "./CustomerDetails.html";
+        }
+
+        function selectPayment(){
+            window.location.href = "./AllPayment.html";
+        }
+    </script>
+</body>
+</html>
