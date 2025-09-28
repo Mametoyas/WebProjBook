@@ -82,14 +82,17 @@ header {
   align-items: center;
 }
 
-.books-all {
-  color: rgba(0,91,182,1);
+.books-all, .category {
   font-size: 18px;
+  cursor: pointer;
+}
+
+.books-all:hover, .category:hover {
+  color: rgba(0,91,182,0.7);
 }
 
 .category {
   color: rgba(0,0,0,1);
-  font-size: 18px;
 }
 
 .search-input {

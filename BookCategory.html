@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>หมวดหมู่</title>
-    <link href="./css/main.css" rel="stylesheet" />
+    <link href="./css/bookcategory.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Itim&display=swap" rel="stylesheet" />
 </head>
 <body>
     <header>
-        <div class="logo-box"><img src="../images/LOGO.png"></div>
+        <div class="logo-box"><img src="./images/LOGO.png"></div>
         <div class="nav-box nav-item" onclick="selectNav(this); selectHome()">หน้าแรก</div>
         <div class="nav-box nav-item" onclick="selectNav(this); selectCus()">ลูกค้า</div>
         <div class="nav-box nav-item selected" onclick="selectNav(this)">ข้อมูลหนังสือ</div>
-        <div class="nav-box nav-item" onclick="selectNav(this)">ยืนยันการชำระเงิน</div>
+        <div class="nav-box nav-item" onclick="selectNav(this); selectPayment();">ยืนยันการชำระเงิน</div>
         <div class="login-box">
             <div class="admin-box nav-item" onclick="selectNav(this)">Admin</div>
         </div>
@@ -22,7 +22,7 @@
 
     <div class="table-header">
         <div class="left-group">
-            <span class="category">หนังสือทั้งหมด</span>
+            <span class="category" onclick="showBookDetails()">หนังสือทั้งหมด</span>
             <span class="books-all">หมวดหมู่</span>
         </div>
         <div class="right-group">
@@ -48,7 +48,7 @@
             <td>ตลก</td>
             <td class="button-cell">
             <button class="edit-btn" onclick="editBook(1)">แก้ไข</button>
-            <button class="delete-btn">ลบ</button>
+            <button class="delete-btn" onclick="return confirm('คุณต้องการลบหมวดหมู่นี้หรือไม่?')">ลบ</button>
             </td>
         </tr>
         <tr>
@@ -56,7 +56,7 @@
             <td>วิทยาศาสตร์</td>
             <td class="button-cell">
             <button class="edit-btn" onclick="editBook(2)">แก้ไข</button>
-            <button class="delete-btn">ลบ</button>
+            <button class="delete-btn" onclick="return confirm('คุณต้องการลบหมวดหมู่นี้หรือไม่?')">ลบ</button>
             </td>
         </tr>
         <tr>
@@ -64,12 +64,50 @@
             <td>โรแมนติก</td>
             <td class="button-cell">
             <button class="edit-btn" onclick="editBook(3)">แก้ไข</button>
-            <button class="delete-btn">ลบ</button>
+            <button class="delete-btn" onclick="return confirm('คุณต้องการลบหมวดหมู่นี้หรือไม่?')">ลบ</button>
             </td>
         </tr>
         <!-- เพิ่มแถวอื่น ๆ ได้ตามต้องการ -->
         </tbody>
     </table>
     </div>
+
+    <script>
+        function selectNav(element) {
+            var navItems = document.getElementsByClassName("nav-item");
+            for (var i = 0; i < navItems.length; i++) {
+                navItems[i].classList.remove("selected");
+            }
+            element.classList.add("selected");
+        }
+
+        function selectHome() {
+            window.location.href = "./HomeAdmin.html";
+        }
+
+        function selectCus() {
+            window.location.href = "./CustomerDetails.html";
+        }
+
+        function showBookDetails(){
+            window.location.href = './BooksDetails.html'
+        }
+
+        
+        function selectPayment(){
+            window.location.href = './AllPayment.html'
+        }
+        
+        function addNewBook() {
+            // เปิด modal เพิ่มหมวดหมู่ใหม่
+            alert('เพิ่มหมวดหมู่ใหม่');
+        }
+        
+        function editBook(categoryId) {
+            // แก้ไขหมวดหมู่
+            alert('แก้ไขหมวดหมู่ ID: ' + categoryId);
+        }
+
+    </script>
 </body>
 </html>

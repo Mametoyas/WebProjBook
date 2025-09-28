@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Draft Stocks Management</title>
+    <title>BooksDetails</title>
     <link href="https://fonts.googleapis.com/css?family=Itim&display=swap" rel="stylesheet" />
     <link href="./css/BooksDetails.css" rel="stylesheet" />
 </head>
@@ -21,8 +21,8 @@
 
     <div class="table-header">
         <div class="left-group">
-            <span class="books-all">หนังสือทั้งหมด</span>
-            <span class="category">หมวดหมู่</span>
+            <span class="books-all selected" onclick="selectBookNav(this);">หนังสือทั้งหมด</span>
+            <span class="category" onclick="selectBookNav(this); selectBookCategory();">หมวดหมู่</span>
         </div>
         <div class="right-group">
             <input type="text" class="search-input" placeholder="ค้นหา...">
@@ -195,6 +195,17 @@
 
         function selectPayment(){
             window.location.href = "./AllPayment.html";
+        }
+        function selectBookCategory(){
+            window.location.href = "./BookCategory.html";
+        }
+        
+        function selectBookNav(element) {
+            var bookNavItems = document.querySelectorAll('.books-all, .category');
+            for (var i = 0; i < bookNavItems.length; i++) {
+                bookNavItems[i].classList.remove('selected');
+            }
+            element.classList.add('selected');
         }
         
         function editBook(bookId) {
