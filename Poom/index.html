@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หมวดหมู่</title>
+    <link href="./css/main.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Itim&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <div class="logo-box"><img src="../images/LOGO.png"></div>
+        <div class="nav-box nav-item" onclick="selectNav(this); selectHome()">หน้าแรก</div>
+        <div class="nav-box nav-item" onclick="selectNav(this); selectCus()">ลูกค้า</div>
+        <div class="nav-box nav-item selected" onclick="selectNav(this)">ข้อมูลหนังสือ</div>
+        <div class="nav-box nav-item" onclick="selectNav(this)">ยืนยันการชำระเงิน</div>
+        <div class="login-box">
+            <div class="admin-box nav-item" onclick="selectNav(this)">Admin</div>
+        </div>
+    </header>
+
+    <div class="table-header">
+        <div class="left-group">
+            <span class="category">หนังสือทั้งหมด</span>
+            <span class="books-all">หมวดหมู่</span>
+        </div>
+        <div class="right-group">
+            <input type="text" class="search-input" placeholder="ค้นหา...">
+            <button class="search-btn">ค้นหา</button>
+        </div>
+    </div>
+    
+    <div class="table-container">
+    <table class="stocks-table">
+        <thead>
+        <tr>
+            <th style="width: 500px;">ลำดับ</th>
+            <th style="width: 50px;">หมวดหมู่</th>
+            <th style="width: auto;">
+                <button class="add-book-btn" onclick="addNewBook()">เพิ่มหนังสือใหม่</button>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>ตลก</td>
+            <td class="button-cell">
+            <button class="edit-btn" onclick="editBook(1)">แก้ไข</button>
+            <button class="delete-btn">ลบ</button>
+            </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>วิทยาศาสตร์</td>
+            <td class="button-cell">
+            <button class="edit-btn" onclick="editBook(2)">แก้ไข</button>
+            <button class="delete-btn">ลบ</button>
+            </td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>โรแมนติก</td>
+            <td class="button-cell">
+            <button class="edit-btn" onclick="editBook(3)">แก้ไข</button>
+            <button class="delete-btn">ลบ</button>
+            </td>
+        </tr>
+        <!-- เพิ่มแถวอื่น ๆ ได้ตามต้องการ -->
+        </tbody>
+    </table>
+    </div>
+</body>
+</html>
