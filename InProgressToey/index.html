@@ -1,44 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Upload</title>
     <link href="https://fonts.googleapis.com/css?family=Itim&display=swap" rel="stylesheet" />
     <link href="./css/main.css" rel="stylesheet" />
-    <title>Document</title>
 </head>
 <body>
-    <div class="v174_119">
-        <div class="name"></div>
-        <span class="v174_121">Logo</span>
-        <span class="v174_122">หน้าแรก</span>
-        <span class="v174_123">หมวดหมู่</span>
-        <div class="name"></div>
-        <span class="v174_125">Ter.2005</span>
-        <div class="v174_126"></div>
-        <div class="v174_169"></div>
-        <span class="v174_170">ค้นหา</span>
-        <span class="v174_173">ตะกร้า</span>
-        <span class="v174_174">10</span>
-        <div class="v174_175"></div>
-        <span class="v193_201">Upload Slip</span>
-        <span class="v193_204">Slip Preview</span>
-        <div class="v193_202"></div>
-        <div class="v197_29"></div>
-        <div class="v193_211"></div>
-        <div class="v193_209"></div>
-        <span class="v193_203">เลือกไฟล์</span>
-        <span class="v193_212">Cancel</span>
-        <span class="v193_210">Submit Payment</span>
-        <div class="v193_205"></div>
-        <div class="v197_12"></div>
-        <span class="v197_31">Krungthai</span>
-        <span class="v197_32">409-3-60857-1</span>
-        <span class="v197_33">นายจักรพรรดิ์ มั่งกูล</span>
-        <span class="v197_34">ชื่อ ธนาคาร </span>
-        <span class="v197_35">ชื่อ ผู้รับ </span>
-        <span class="v197_36">เลขบัญชี </span>
-        <span class="v197_14">ดาวน์โหลด QR Code</span>
-        <div class="v197_27"></div>
+    <header>
+        <div class="logo-box"></div>
+        <div class="nav-box nav-item selected" onclick="selectNav(this)">หน้าแรก</div>
+        <div class="nav-box nav-item" onclick="selectNav(this)">หมวดหมู่</div>
+        
+        <div class="search-container">
+            <input type="text" class="search-textbox" placeholder="ค้นหาหนังสือ...">
+            <button class="search-box">ค้นหา</button>
+        </div>
+        
+        <div class="cart-info">
+            <span class="cart-text">ตะกร้า</span>
+            <span class="cart-count">10</span>
+        </div>
+        
+        <div class="user-info">Ter.2005</div>
+    </header>
+
+    <div class="main-container">
+        <div class="payment-info">
+            <div class="bank-info">
+                <div class="qr-code"></div>
+                <button class="download-btn" onclick="downloadQR()">ดาวน์โหลด QR Code</button>
+                
+                <table class="bank-table">
+                    <tr>
+                        <td class="label">ชื่อ ธนาคาร:</td>
+                        <td class="value">Krungthai</td>
+                    </tr>
+                    <tr>
+                        <td class="label">เลขบัญชี:</td>
+                        <td class="value">409-3-60857-1</td>
+                    </tr>
+                    <tr>
+                        <td class="label">ชื่อ ผู้รับ:</td>
+                        <td class="value">นายจักรพรรดิ์ มั่งกูล</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="upload-container">
+            <h2 class="section-title">Slip Preview</h2>
+            <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="showPreview(event)">
+            <div class="preview-area"></div>
+            
+            <div class="action-buttons">
+                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">Upload</button>
+                <button class="submit-btn">Submit Payment</button>
+            </div>
+        </div>
     </div>
+
+    <script>
+        function selectNav(element) {
+            var navItems = document.getElementsByClassName("nav-item");
+            for (var i = 0; i < navItems.length; i++) {
+                navItems[i].classList.remove("selected");
+            }
+            element.classList.add("selected");
+        }
+        
+        function showPreview(event) {
+            const file = event.target.files[0];
+            const previewArea = document.querySelector('.preview-area');
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewArea.innerHTML = '<img src="' + e.target.result + '" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        function downloadQR() {
+            const link = document.createElement('a');
+            link.href = './images/v197_27.png';
+            link.download = 'QR_Code.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
 </body>
 </html>
