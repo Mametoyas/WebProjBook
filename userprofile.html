@@ -13,29 +13,29 @@
 </head>
 <body>
     <header>
-  <div class="logo-box"><img src="./images/LOGO.png" alt="Logo"></div>
-  <div class="nav-box nav-item selected" onclick="selectNav(this); showBreadcrumb()">หน้าแรก</div>
-  <div class="dropdown-box nav-item" onclick="selectNav(this)">
-    <span id="categoryLabel" onclick="toggleDropdown(); event.stopPropagation();">หมวดหมู่ ▼</span>
-    <div class="dropdown-content" id="categoryDropdown">
-      <a class='Category' href="#" onclick="selectCategory('ตลก')">ตลก</a>
-      <a class='Category' href="#" onclick="selectCategory('วิทยาศาสตร์')">วิทยาศาสตร์</a>
-      <a class='Category' href="#" onclick="selectCategory('ดราม่า')">ดราม่า</a>
-      <a class='Category' href="#" onclick="selectCategory('โรแมนติก')">โรแมนติก</a>
-    </div>
-  </div>
+        <div class="logo-box"><img src="./images/LOGO.png" alt="Logo"></div>
+        <div class="nav-box nav-item selected" onclick="selectNav(this); showBreadcrumb()">หน้าแรก</div>
+        <div class="dropdown-box nav-item" onclick="selectNav(this)">
+        <span id="categoryLabel" onclick="toggleDropdown(); event.stopPropagation();">หมวดหมู่ ▼</span>
+        <div class="dropdown-content" id="categoryDropdown">
+            <a class='Category' href="#" onclick="selectCategory('ตลก')">ตลก</a>
+            <a class='Category' href="#" onclick="selectCategory('วิทยาศาสตร์')">วิทยาศาสตร์</a>
+            <a class='Category' href="#" onclick="selectCategory('ดราม่า')">ดราม่า</a>
+            <a class='Category' href="#" onclick="selectCategory('โรแมนติก')">โรแมนติก</a>
+        </div>
+        </div>
 
-  <div class="search-container">
-    <input type="text" class="search-textbox" placeholder="ค้นหาหนังสือ...">
-    <button class="search-box">ค้นหา</button>
-  </div>
+        <div class="search-container">
+        <input type="text" class="search-textbox" placeholder="ค้นหาหนังสือ...">
+        <button class="search-box">ค้นหา</button>
+        </div>
 
-  <div class="nav-right">
-    <a href="cart.html" class="nav-item">ตะกร้า</a>
-    <div class="nav-item user-box">Ter.2005</div>
-    <div class="token-box nav-item"><img src="./images/tokenicon.png" width="28" height="28" alt="Token"></div>
-    <div class="number-token nav-item">10</div>
-  </div>
+        <div class="nav-right">
+        <a href="cart.html" class="nav-item">ตะกร้า</a>
+        <div class="nav-item user-box">Ter.2005</div>
+        <div class="token-box nav-item"><img src="./images/tokenicon.png" width="28" height="28" alt="Token"></div>
+        <div class="number-token nav-item">10</div>
+        </div>
 </header>
 
   <!-- แท็บหัวข้อใต้แถบเมนู ให้เหมือนภาพ -->
@@ -43,7 +43,7 @@
     <span class="tab" onclick="selectBreadcrumb(this)"><a class="tab" id="tabProfile" href="userprofile.html">Ter.2005</a></span>
     <span class="tab" onclick="selectBreadcrumb(this)"><a class="tab" id="tabMyBooks" href="MyBook.html">หนังสือของฉัน</a></span>
     <span class="tab" onclick="selectBreadcrumb(this)"><a class="tab" id="tabHistory" href="bookhistory.html">ประวัติการเช่าหนังสือ</a></span>
-    <span class="tab" onclick="selectBreadcrumb(this)"><a class="tab" id="tabFavorites" href="favorites.html">รายการโปรด</a></span>
+    <span class="tab" onclick="selectBreadcrumb(this)"><a class="tab" id="tabFavorites" href="Favorites.html">รายการโปรด</a></span>
     <span class="tab" onclick="selectBreadcrumb(this)"><a class="tab" id="tabPayments" href="payments.html">ประวัติการชำระเงิน</a></span>
   </nav>
   <hr class="tabs-divider" />
