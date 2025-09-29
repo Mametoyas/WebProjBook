@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>โปรไฟล์ผู้ใช้</title>
+    <link rel="icon" type="image/png" href="./images/LOGO.png">
+    <link href="https://fonts.googleapis.com/css?family=Itim&display=swap" rel="stylesheet" />
+    <!-- <link href="./css/main.css" rel="stylesheet" />
+    <link href="./css/HomeUser.css" rel="stylesheet" /> -->
+    <link href="./css/userprofilecss.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <div class="logo-box"><img src="./images/LOGO.png"></div>
+        <div class="nav-box nav-item selected" onclick="selectNav(this); showBreadcrumb()">หน้าแรก</div>
+        <div class="dropdown-box nav-item" onclick="selectNav(this)">
+            <span id="categoryLabel" onclick="toggleDropdown(); event.stopPropagation();">หมวดหมู่ ▼</span>
+            <div class="dropdown-content" id="categoryDropdown">
+                <a class='Category' href="#" onclick="selectCategory('ตลก')">ตลก</a>
+                <a class='Category' href="#" onclick="selectCategory('วิทยาศาสตร์')">วิทยาศาสตร์</a>
+                <a class='Category' href="#" onclick="selectCategory('ดราม่า')">ดราม่า</a>
+                <a class='Category' href="#" onclick="selectCategory('โรแมนติก')">โรแมนติก</a>
+            </div>
+        </div>
+
+        
+        <div class="search-container">
+        <input type="text" class="search-textbox" placeholder="ค้นหาหนังสือ...">
+        <button class="search-box">ค้นหา</button>
+        </div>
+
+        <div class="nav-right">
+        <div class="nav-item">ตะกร้า</div>
+        <div class="nav-item user-box">Ter.2005</div>
+        </div>
+    </header>
+
+  <!-- แท็บหัวข้อใต้แถบเมนู ให้เหมือนภาพ -->
+  <nav class="profile-tabs">
+    <a class="tab" id="tabProfile" href="userprofile.html">Ter.2005</a>
+    <a class="tab" id="tabMyBooks" href="mybooks.html">หนังสือของฉัน</a>
+    <a class="tab" id="tabHistory" href="rental-history.html">ประวัติการเช่าหนังสือ</a>
+    <a class="tab" id="tabFavorites" href="favorites.html">รายการโปรด</a>
+    <a class="tab" id="tabPayments" href="payments.html">ประวัติการชำระเงิน</a>
+  </nav>
+  <hr class="tabs-divider" />
+
+  <main class="profile-page">
+    <section class="profile-card">
+      <div class="profile-row">
+        <label class="label" for="profileName">ชื่อ :</label>
+        <input id="profileName" class="profile-input" type="text" readonly />
+      </div>
+      <div class="profile-row">
+        <label class="label" for="profileGender">เพศ :</label>
+        <input id="profileGender" class="profile-input" type="text" readonly />
+      </div>
+      <div class="profile-row">
+        <label class="label" for="profileBirthdate">วันเกิด :</label>
+        <input id="profileBirthdate" class="profile-input" type="text" readonly />
+      </div>
+      <div class="profile-row">
+        <label class="label" for="profilePhone">โทรศัพท์ :</label>
+        <input id="profilePhone" class="profile-input" type="text" readonly />
+      </div>
+      <div class="profile-row">
+        <label class="label" for="profileEmail">อีเมล :</label>
+        <input id="profileEmail" class="profile-input" type="text" readonly />
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function selectNav(el) {
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+    function toggleDropdown() {
+      const dd = document.getElementById('categoryDropdown');
+      dd?.classList.toggle('show');
+    }
+    function selectCategory(name) {
+      const label = document.getElementById('categoryLabel');
+      if (label) label.textContent = name + ' ▼';
+      document.getElementById('categoryDropdown')?.classList.remove('show');
+    }
+    window.addEventListener('click', () => {
+      const dd = document.getElementById('categoryDropdown');
+      if (dd && dd.classList.contains('show')) dd.classList.remove('show');
+    });
+
+    function setActiveTabByUrl() {
+  const tabs = Array.from(document.querySelectorAll('.profile-tabs .tab'));
+  const curr = location.pathname.split('/').pop().toLowerCase();
+  tabs.forEach(t => t.classList.remove('active'));
+  const match = tabs.find(t => {
+    const href = (t.getAttribute('href') || '').split('/').pop().toLowerCase();
+    return href && href === curr;
+  });
+  if (match) match.classList.add('active');
+}
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
+      const displayName = user.username || user.name || 'Ter.2005';
+
+      const setValue = (id, v) => {
+        const el = document.getElementById(id);
+        if (el) el.value = v || '';
+      };
+
+      setValue('profileName', displayName);
+      setValue('profileGender', user.gender);
+      setValue('profileBirthdate', user.birthdate);
+      setValue('profilePhone', user.phone);
+      setValue('profileEmail', user.email);
+
+      const userBox = document.querySelector('.user-box');
+      if (userBox) userBox.textContent = displayName;
+
+      const tabProfile = document.getElementById('tabProfile');
+      if (tabProfile) tabProfile.textContent = displayName;
+
+      setActiveTabByUrl();
+    });
+  </script>
+</body>
+</html>
