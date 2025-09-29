@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./css/MyBook.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Itim&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <div class="logo-box"><img src="./images/LOGO.png"></div>
+        <div class="nav-box nav-item selected" onclick="selectNav(this); showBreadcrumb()">หน้าแรก</div>
+        <div class="dropdown-box nav-item" onclick="selectNav(this)">
+            <span id="categoryLabel" onclick="toggleDropdown(); event.stopPropagation();">หมวดหมู่ ▼</span>
+            <div class="dropdown-content" id="categoryDropdown">
+                <a class='Category' href="#" onclick="selectCategory('ตลก')">ตลก</a>
+                <a class='Category' href="#" onclick="selectCategory('วิทยาศาสตร์')">วิทยาศาสตร์</a>
+                <a class='Category' href="#" onclick="selectCategory('ดราม่า')">ดราม่า</a>
+                <a class='Category' href="#" onclick="selectCategory('โรแมนติก')">โรแมนติก</a>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-textbox" placeholder="ค้นหาหนังสือ...">
+            <button class="search-box">ค้นหา</button>
+        </div>
+        
+        <div class="login-box nav-item" onclick="selectNav(this)">ตระกล้า</div>
+        <div class="register-box nav-item" onclick="selectNav(this)">Ter.2005</div>
+        <div class="token-box" onclick="selectNav(this)"><img src="./images/tokenicon.png" width="45px" height="45px"></div>
+        <div class="number-token nav-item">10</div>
+    </header>
+    
+    <div class="breadcrumb-box" id="breadcrumbBox">
+        <span class="breadcrumb-item" onclick="selectBreadcrumb(this)">Ter.2005</span>
+        <span class="breadcrumb-item selected" onclick="selectBreadcrumb(this)">หนังสือของฉัน</span>
+        <span class="breadcrumb-item" onclick="selectBreadcrumb(this)">ประวัติการเช่าหนังสือ</span>
+        <span class="breadcrumb-item" onclick="selectBreadcrumb(this)">รายการโปรด</span>
+        <span class="breadcrumb-item" onclick="selectBreadcrumb(this)">ประวัติการชำระเงิน</span>
+    </div>
+
+    <hr class="tabs-divider">
+
+    <div class="books-container">
+        <div class="book-box" onclick="showBookDetail('Sakamoto desu ga?', 'นาโนะ ยูกิ', 'สำนักพิมพ์ ABC', '2020', 'เรื่องราวของนักเรียนมัธยมที่เก่งที่สุดในโลก', 'sakamoto.png')">
+            <div class="book-image" style="background-image: url('./images/sakamoto.png')"></div>
+            <div class="book-title">Sakamoto desu ga?</div>
+            <div class="total-day-title">เหลือเวลาอีก 1 วัน</div>
+        </div>
+        <div class="book-box" onclick="showBookDetail('แมวเป้า', 'ผู้แต่ง B', 'สำนักพิมพ์ XYZ', '2019', 'เรื่องของแมวตัวน้อยที่มีเรื่องน่ารัก', 'cat.png')">
+            <div class="book-image" style="background-image: url('./images/cat.png')"></div>
+            <div class="book-title">แมวเป้า</div>
+            <div class="total-day-title">เหลือเวลาอีก 7 วัน</div>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div id="bookModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <div class="modal-left">
+                    <div class="image-title-section">
+                        <div class="modal-image"></div>
+                        <h3 id="modalTitle"></h3>
+                    </div>
+                    <div class="modal-labels">
+                        <p><strong>ผู้แต่ง</strong></p>
+                        <p><strong>สำนักพิมพ์</strong></p>
+                        <p><strong>ปีที่พิมพ์</strong></p>
+                        <p><strong>เนื้อเรื่องย่อ</strong></p>
+                    </div>
+                </div>
+                <div class="modal-right">
+                    <div class="modal-values">
+                        <p id="modalAuthor"></p>
+                        <p id="modalPublisher"></p>
+                        <p id="modalYear"></p>
+                        <textarea id="modalSummary" readonly></textarea>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="red-button" onclick="addToCart()">เพิ่มเข้าตะกร้า</button>
+                        <button class="red-button" onclick="addToFavorites()">รายการโปรด</button>
+                        <button class="red-button" onclick="checkout()">ชำระเงิน</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleDropdown() {
+            document.getElementById("categoryDropdown").classList.toggle("show");
+        }
+        
+        function showBreadcrumb() {
+            document.getElementById("breadcrumbBox").style.display = "block";
+        }
+        
+        function selectCategory(category) {
+            document.getElementById("categoryLabel").textContent = category + " ▼";
+            document.getElementById("categoryDropdown").classList.remove("show");
+        }
+        
+        function selectBreadcrumb(element) {
+            var breadcrumbs = document.getElementsByClassName("breadcrumb-item");
+            for (var i = 0; i < breadcrumbs.length; i++) {
+                breadcrumbs[i].classList.remove("selected");
+            }
+            element.classList.add("selected");
+        }
+        
+        function selectNav(element) {
+            var navItems = document.getElementsByClassName("nav-item");
+            for (var i = 0; i < navItems.length; i++) {
+                navItems[i].classList.remove("selected");
+            }
+            element.classList.add("selected");
+        }
+        
+        function showBookDetail(title, author, publisher, year, summary, image) {
+            document.getElementById("modalTitle").textContent = title;
+            document.getElementById("modalAuthor").textContent = author;
+            document.getElementById("modalPublisher").textContent = publisher;
+            document.getElementById("modalYear").textContent = year;
+            document.getElementById("modalSummary").textContent = summary;
+            document.querySelector(".modal-image").style.backgroundImage = "url('./images/"+image;
+            document.getElementById("bookModal").style.display = "block";
+        }
+        
+        function closeModal() {
+            document.getElementById("bookModal").style.display = "none";
+        }
+        
+        function addToCart() {
+            alert("เพิ่มเข้าตะกร้าแล้ว!");
+        }
+        
+        function addToFavorites() {
+            alert("เพิ่มเข้ารายการโปรดแล้ว!");
+        }
+        
+        function checkout() {
+            alert("ไปยังหน้าชำระเงิน!");
+        }
+        
+        window.onclick = function(event) {
+            if (!event.target.matches('span')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    dropdowns[i].classList.remove('show');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
