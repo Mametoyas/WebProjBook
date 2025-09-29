@@ -1,1 +1,187 @@
-<!DOCTYPE html><html><head><link href="https://fonts.googleapis.com/css?family=Itim&display=swap" rel="stylesheet" /><link href="./css/main.css" rel="stylesheet" /><title>Document</title></head><body><div class="v16_296"><div class="v16_309"></div><span class="v16_310">Sakamoto desu ga?</span><span class="v16_312">เช่าอยู่</span><div class="v16_313"></div><span class="v16_314">พี่กรรมกรก่อสร้าง</span><span class="v16_316">คืนแล้ว</span><div class="name"></div><span class="v19_104">Logo</span><span class="v19_105">หน้าแรก</span><span class="v74_2">หน้าแรก</span><span class="v19_106">หมวดหมู่</span><div class="name"></div><div class="v19_110"></div><div class="v19_111"></div><span class="v19_112">ค้นหา</span><div class="name"></div><span class="v102_219">หนังสือของฉัน</span><span class="v102_220">ประวัติการเช่าหนังสือ</span><span class="v102_221">Ter.2005</span><span class="v107_269">รายการโปรด</span><span class="v175_23">Ter.2005</span><span class="v175_31">ตะกร้า</span><div class="v175_45"></div><span class="v175_55">10</span><span class="v185_6">ประวัติการชำระเงิน</span></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หนังสือของฉัน</title>
+    <link rel="icon" type="image/png" href="./images/LOGO.png">
+    <link href="./css/MyBook.css" rel="stylesheet" />
+    <link href="./css/bookhistory.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Itim&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <header>
+  <div class="logo-box"><img src="./images/LOGO.png"></div>
+  <div class="nav-box nav-item selected" onclick="selectNav(this); showBreadcrumb()">หน้าแรก</div>
+  <div class="dropdown-box nav-item" onclick="selectNav(this)">
+    <span id="categoryLabel" onclick="toggleDropdown(); event.stopPropagation();">หมวดหมู่ ▼</span>
+    <div class="dropdown-content" id="categoryDropdown">
+      <a class='Category' href="#" onclick="selectCategory('ตลก')">ตลก</a>
+      <a class='Category' href="#" onclick="selectCategory('วิทยาศาสตร์')">วิทยาศาสตร์</a>
+      <a class='Category' href="#" onclick="selectCategory('ดราม่า')">ดราม่า</a>
+      <a class='Category' href="#" onclick="selectCategory('โรแมนติก')">โรแมนติก</a>
+    </div>
+  </div>
+
+  <div class="search-container">
+    <input type="text" class="search-textbox" placeholder="ค้นหาหนังสือ...">
+    <button class="search-box">ค้นหา</button>
+  </div>
+  
+  <div class="nav-right">
+    <a href="cart.html" class="nav-item">ตะกร้า</a>
+    <div class="nav-item user-box">Ter.2005</div>
+    <div class="token-box nav-item"><img src="./images/tokenicon.png" width="28" height="28" alt="Token"></div>
+    <div class="number-token nav-item">10</div>
+  </div>
+</header>
+
+<nav class="profile-tabs">
+  <a class="tab" id="tabProfile" href="userprofile.html">Ter.2005</a>
+  <a class="tab" id="tabMyBooks" href="MyBook.html">หนังสือของฉัน</a>
+  <a class="tab" id="tabHistory" href="bookhistory.html">ประวัติการเช่าหนังสือ</a>
+  <a class="tab" id="tabFavorites" href="favorites.html">รายการโปรด</a>
+  <a class="tab" id="tabPayments" href="payments.html">ประวัติการชำระเงิน</a>
+</nav>
+<hr class="tabs-divider">
+
+    <div class="books-container">
+        <div class="book-box" onclick="showBookDetail('Sakamoto desu ga?', 'นาโนะ ยูกิ', 'สำนักพิมพ์ ABC', '2020', 'เรื่องราวของนักเรียนมัธยมที่เก่งที่สุดในโลก', 'sakamoto.png')">
+            <div class="book-image" style="background-image: url('./images/sakamoto.png')"></div>
+            <div class="book-title">Sakamoto desu ga?</div>
+            <div class="rent">เช้าอยู่</div>
+        </div>
+        <div class="book-box" onclick="showBookDetail('แมวเป้า', 'ผู้แต่ง B', 'สำนักพิมพ์ XYZ', '2019', 'เรื่องของแมวตัวน้อยที่มีเรื่องน่ารัก', 'cat.png')">
+            <div class="book-image" style="background-image: url('./images/cat.png')"></div>
+            <div class="book-title">แมวเป้า</div>
+            <div class="EXP">หมดอายุ</div>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div id="bookModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <div class="modal-left">
+                    <div class="image-title-section">
+                        <div class="modal-image"></div>
+                        <h3 id="modalTitle"></h3>
+                    </div>
+                    <div class="modal-labels">
+                        <p><strong>ผู้แต่ง</strong></p>
+                        <p><strong>สำนักพิมพ์</strong></p>
+                        <p><strong>ปีที่พิมพ์</strong></p>
+                        <p><strong>เนื้อเรื่องย่อ</strong></p>
+                    </div>
+                </div>
+                <div class="modal-right">
+                    <div class="modal-values">
+                        <p id="modalAuthor"></p>
+                        <p id="modalPublisher"></p>
+                        <p id="modalYear"></p>
+                        <textarea id="modalSummary" readonly></textarea>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="red-button" onclick="addToCart()">เพิ่มเข้าตะกร้า</button>
+                        <button class="red-button" onclick="addToFavorites()">รายการโปรด</button>
+                        <button class="red-button" onclick="checkout()">ชำระเงิน</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleDropdown() {
+            document.getElementById("categoryDropdown").classList.toggle("show");
+        }
+        
+        function showBreadcrumb() {
+            document.getElementById("breadcrumbBox").style.display = "block";
+        }
+        
+        function selectCategory(category) {
+            document.getElementById("categoryLabel").textContent = category + " ▼";
+            document.getElementById("categoryDropdown").classList.remove("show");
+        }
+        
+        function selectBreadcrumb(element) {
+            var breadcrumbs = document.getElementsByClassName("breadcrumb-item");
+            for (var i = 0; i < breadcrumbs.length; i++) {
+                breadcrumbs[i].classList.remove("selected");
+            }
+            element.classList.add("selected");
+        }
+        
+        function selectNav(element) {
+            var navItems = document.getElementsByClassName("nav-item");
+            for (var i = 0; i < navItems.length; i++) {
+                navItems[i].classList.remove("selected");
+            }
+            element.classList.add("selected");
+        }
+        
+        function showBookDetail(title, author, publisher, year, summary, image) {
+            document.getElementById("modalTitle").textContent = title;
+            document.getElementById("modalAuthor").textContent = author;
+            document.getElementById("modalPublisher").textContent = publisher;
+            document.getElementById("modalYear").textContent = year;
+            document.getElementById("modalSummary").textContent = summary;
+            document.querySelector(".modal-image").style.backgroundImage = "url('./images/"+image;
+            document.getElementById("bookModal").style.display = "block";
+        }
+        
+        function closeModal() {
+            document.getElementById("bookModal").style.display = "none";
+        }
+        
+        function addToCart() {
+            alert("เพิ่มเข้าตะกร้าแล้ว!");
+        }
+        
+        function addToFavorites() {
+            alert("เพิ่มเข้ารายการโปรดแล้ว!");
+        }
+        
+        function checkout() {
+            alert("ไปยังหน้าชำระเงิน!");
+        }
+        
+        window.onclick = function(event) {
+            if (!event.target.matches('span')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    dropdowns[i].classList.remove('show');
+                }
+            }
+        }
+
+        function setActiveTabByUrl() {
+  const tabs = Array.from(document.querySelectorAll('.profile-tabs .tab'));
+  const curr = location.pathname.split('/').pop().toLowerCase();
+  tabs.forEach(t => t.classList.remove('active'));
+  const match = tabs.find(t => {
+    const href = (t.getAttribute('href') || '').split('/').pop().toLowerCase();
+    return href && href === curr;
+  });
+  if (match) match.classList.add('active');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const user = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
+  const displayName = user.username || user.name || 'Ter.2005';
+  const userBox = document.querySelector('.user-box');
+  if (userBox) userBox.textContent = displayName;
+  const tabProfile = document.getElementById('tabProfile');
+  if (tabProfile) tabProfile.textContent = displayName;
+
+  const tokenEl = document.querySelector('.number-token');
+  const token = Number(user.token ?? localStorage.getItem('token') ?? 10);
+  if (tokenEl) tokenEl.textContent = token;
+
+  setActiveTabByUrl();
+});
+    </script>
+</body>
+</html>

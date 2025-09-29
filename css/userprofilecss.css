@@ -13,13 +13,14 @@ header {
   position: relative;
   display: flex;
   align-items: center;
-  padding: 20px;
-  border-bottom: 1px solid #ddd;
+  gap: 12px;
+  padding: 8px 16px;
 }
 
 .nav-right {
   margin-left: auto;
   display: flex;
+  align-items: center;
   gap: 12px;
 }
 
@@ -42,14 +43,24 @@ header {
 
 .breadcrumb-item {
   cursor: pointer;
+  padding: 60px;
 }
 
 .breadcrumb-item:hover {
   color: rgba(0,91,182,0.7);
 }
 
+.breadcrumb-box .breadcrumb-item {
+  text-decoration: none;
+  padding: 6px 0;
+  margin: auto;
+  transition: color .15s ease-in-out;
+  cursor: pointer;
+}
+
 .nav-item {
   cursor: pointer;
+  font-size: 24px;
 }
 
 .nav-item:hover {
@@ -143,28 +154,49 @@ header {
 }
 
 .search-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
+  gap: 8px;
+  z-index: 1;
 }
 
-
 .search-textbox {
-  font-size: 18px;
-  padding: 8px;
+  width: 420px;
+  max-width: 48vw;
+  height: 32px;
+  padding: 4px 10px;
+  font-size: 24px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  width: 225px;
   margin-right: 8px;
-  font-family: 'Itim', sans-serif;
+  font-family: 'Itim', cursive;
+}
+
+/* ให้ตัวอักษรในช่องค้นหาและ placeholder เป็น 24px และฟอนต์ Itim */
+.search-textbox {
+  font-size: 24px;
+  font-family: 'Itim', cursive;
+}
+
+/* รองรับทุกเบราว์เซอร์ */
+.search-textbox::placeholder,
+.search-textbox::-webkit-input-placeholder,
+.search-textbox::-moz-placeholder,
+.search-textbox:-ms-input-placeholder,
+.search-textbox::-ms-input-placeholder {
+  font-size: 24px;
+  font-family: 'Itim', cursive;
 }
 
 .search-box {
+  height: 32px;
+  padding: 0 14px;
   font-size: 18px;
   background: #c71720;
   color: white;
-  padding: 4px 8px;
   border-radius: 5px;
 }
 
@@ -218,12 +250,6 @@ header {
   margin-right: 15px;
 }
 
-.breadcrumb-box {
-  font-size: 24px;
-  padding: 15px;
-  margin: 15px 0;
-  margin-left: 100px;
-}
 
 .books-container {
   display: flex;
@@ -311,29 +337,31 @@ header {
   background: rgba(199,23,32,1);
 }
 
-/* Tabs under header */
+/* ขนาดตัวอักษรในส่วนขวาของ header */
+.nav-right .nav-item,
+.nav-right .number-token {
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+/* จัดแท็บให้อยู่กึ่งกลาง และขนาด 24px */
 .profile-tabs {
   display: flex;
   gap: 40px;
   align-items: center;
+  justify-content: center; /* จัดกลางตามที่ต้องการ */
   margin: 10px 16px 0 16px;
   font-family: 'Itim', cursive;
 }
 .profile-tabs .tab {
+  font-size: 24px;
   color: #444;
   text-decoration: none;
   padding: 6px 0;
-  margin: auto;
   transition: color .15s ease-in-out;
-  cursor: pointer;
 }
-.profile-tabs .tab:hover {
-  color: #1a73e8;
-}
-.profile-tabs .tab.active {
-  color: #1a73e8;
-  font-weight: 600;
-}
+.profile-tabs .tab:hover { color: #1a73e8; }
+.profile-tabs .tab.active { color: #1a73e8; }
 .tabs-divider {
   border: 0;
   border-top: 1px solid #cfcfcf;
@@ -342,7 +370,9 @@ header {
 
 /* การ์ดโปรไฟล์และแถวข้อมูล */
 .profile-page {
-  margin: 0 16px;
+  align-items: center;
+  font-size: 24px;
+  margin: 160px 360px;
   font-family: 'Itim', cursive;
 }
 .profile-card {
@@ -362,8 +392,28 @@ header {
 .profile-input {
   flex: 1;
   height: 28px;
+  font-size: 24px;
   padding: 4px 8px;
   border: 1px solid #e5e5e5;
   background: #fafafa;
   border-radius: 2px;
+}
+
+/* Token */
+.token-box { display: flex; align-items: center; }
+.number-token { font-weight: 600; }
+
+/* ลบเส้นใต้ลิงก์ตะกร้าใน header */
+.nav-right a.nav-item {
+  text-decoration: none;
+  color: inherit;
+}
+.nav-right a.nav-item:hover {
+  color: rgba(0,91,182,0.7);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .search-container { position: static; transform: none; order: 99; width: 100%; justify-content: center; margin-top: 8px; }
+  .search-textbox { width: 100%; max-width: none; }
 }

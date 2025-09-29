@@ -3,44 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>หนังสือของฉัน</title>
+    <link rel="icon" type="image/png" href="./images/LOGO.png">
     <link href="./css/MyBook.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Itim&display=swap" rel="stylesheet" />
 </head>
 <body>
     <header>
-        <div class="logo-box"><img src="./images/LOGO.png"></div>
-        <div class="nav-box nav-item selected" onclick="selectNav(this); showBreadcrumb()">หน้าแรก</div>
-        <div class="dropdown-box nav-item" onclick="selectNav(this)">
-            <span id="categoryLabel" onclick="toggleDropdown(); event.stopPropagation();">หมวดหมู่ ▼</span>
-            <div class="dropdown-content" id="categoryDropdown">
-                <a class='Category' href="#" onclick="selectCategory('ตลก')">ตลก</a>
-                <a class='Category' href="#" onclick="selectCategory('วิทยาศาสตร์')">วิทยาศาสตร์</a>
-                <a class='Category' href="#" onclick="selectCategory('ดราม่า')">ดราม่า</a>
-                <a class='Category' href="#" onclick="selectCategory('โรแมนติก')">โรแมนติก</a>
-            </div>
-        </div>
-
-        <div class="search-container">
-            <input type="text" class="search-textbox" placeholder="ค้นหาหนังสือ...">
-            <button class="search-box">ค้นหา</button>
-        </div>
-        
-        <div class="login-box nav-item" onclick="selectNav(this)">ตระกล้า</div>
-        <div class="register-box nav-item" onclick="selectNav(this)">Ter.2005</div>
-        <div class="token-box" onclick="selectNav(this)"><img src="./images/tokenicon.png" width="45px" height="45px"></div>
-        <div class="number-token nav-item">10</div>
-    </header>
-    
-    <div class="breadcrumb-box" id="breadcrumbBox">
-        <span class="breadcrumb-item" onclick="selectBreadcrumb(this)">Ter.2005</span>
-        <span class="breadcrumb-item selected" onclick="selectBreadcrumb(this)">หนังสือของฉัน</span>
-        <span class="breadcrumb-item" onclick="selectBreadcrumb(this)">ประวัติการเช่าหนังสือ</span>
-        <span class="breadcrumb-item" onclick="selectBreadcrumb(this)">รายการโปรด</span>
-        <span class="breadcrumb-item" onclick="selectBreadcrumb(this)">ประวัติการชำระเงิน</span>
+  <div class="logo-box"><img src="./images/LOGO.png"></div>
+  <div class="nav-box nav-item selected" onclick="selectNav(this); showBreadcrumb()">หน้าแรก</div>
+  <div class="dropdown-box nav-item" onclick="selectNav(this)">
+    <span id="categoryLabel" onclick="toggleDropdown(); event.stopPropagation();">หมวดหมู่ ▼</span>
+    <div class="dropdown-content" id="categoryDropdown">
+      <a class='Category' href="#" onclick="selectCategory('ตลก')">ตลก</a>
+      <a class='Category' href="#" onclick="selectCategory('วิทยาศาสตร์')">วิทยาศาสตร์</a>
+      <a class='Category' href="#" onclick="selectCategory('ดราม่า')">ดราม่า</a>
+      <a class='Category' href="#" onclick="selectCategory('โรแมนติก')">โรแมนติก</a>
     </div>
+  </div>
 
-    <hr class="tabs-divider">
+  <div class="search-container">
+    <input type="text" class="search-textbox" placeholder="ค้นหาหนังสือ...">
+    <button class="search-box">ค้นหา</button>
+  </div>
+  
+  <div class="nav-right">
+    <a href="cart.html" class="nav-item">ตะกร้า</a>
+    <div class="nav-item user-box">Ter.2005</div>
+    <div class="token-box nav-item"><img src="./images/tokenicon.png" width="28" height="28" alt="Token"></div>
+    <div class="number-token nav-item">10</div>
+  </div>
+</header>
+
+<nav class="profile-tabs">
+  <a class="tab" id="tabProfile" href="userprofile.html">Ter.2005</a>
+  <a class="tab" id="tabMyBooks" href="MyBook.html">หนังสือของฉัน</a>
+  <a class="tab" id="tabHistory" href="bookhistory.html">ประวัติการเช่าหนังสือ</a>
+  <a class="tab" id="tabFavorites" href="favorites.html">รายการโปรด</a>
+  <a class="tab" id="tabPayments" href="payments.html">ประวัติการชำระเงิน</a>
+</nav>
+<hr class="tabs-divider">
 
     <div class="books-container">
         <div class="book-box" onclick="showBookDetail('Sakamoto desu ga?', 'นาโนะ ยูกิ', 'สำนักพิมพ์ ABC', '2020', 'เรื่องราวของนักเรียนมัธยมที่เก่งที่สุดในโลก', 'sakamoto.png')">
@@ -153,6 +155,32 @@
                 }
             }
         }
+
+        function setActiveTabByUrl() {
+  const tabs = Array.from(document.querySelectorAll('.profile-tabs .tab'));
+  const curr = location.pathname.split('/').pop().toLowerCase();
+  tabs.forEach(t => t.classList.remove('active'));
+  const match = tabs.find(t => {
+    const href = (t.getAttribute('href') || '').split('/').pop().toLowerCase();
+    return href && href === curr;
+  });
+  if (match) match.classList.add('active');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const user = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
+  const displayName = user.username || user.name || 'Ter.2005';
+  const userBox = document.querySelector('.user-box');
+  if (userBox) userBox.textContent = displayName;
+  const tabProfile = document.getElementById('tabProfile');
+  if (tabProfile) tabProfile.textContent = displayName;
+
+  const tokenEl = document.querySelector('.number-token');
+  const token = Number(user.token ?? localStorage.getItem('token') ?? 10);
+  if (tokenEl) tokenEl.textContent = token;
+
+  setActiveTabByUrl();
+});
     </script>
 </body>
 </html>
